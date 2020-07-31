@@ -1,0 +1,35 @@
+@import 'reset';
+@import 'colors';
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $main-color;
+  font-family: 'Lato', sans-serif;
+}
+.container {
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+
+  h1 {
+    font-size: 3rem;
+    padding-bottom: 25px;
+  }
+
+  p {
+    font-size: 1rem;
+    padding-bottom: 10px;
+  }
+
+}
