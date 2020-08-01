@@ -5,21 +5,19 @@ import { MyEnum } from './enums';
 import { MyInterface } from './types';
 import { ClassElement } from 'typescript';
 
-document.addEventListener('DOMContentLoaded', (): void => {
-  const controller = new Controller(new View(), new Model());
+document.addEventListener('DOMContentLoaded', () => {
   // console.log('DOMContentLoaded', controller);
+  return new Controller(new View(), new Model());
 });
 
 class Controller {
-  constructor(view: View, model: Model) {
-    // view.log();
-    // model.log();
-    // console.log('VIEW', view);
-    view.buttonEvent(this.handleButtonClick);
+  constructor(public view: View, public model: Model) {
+    this.view.buttonEvent(this.handleButtonClick);
   }
 
-  handleButtonClick = (a) => {
-   console.log('3 event goes to controller', a);
+  handleButtonClick = (data: string): void => {
+    console.log('3 event goes to controller', data);
+    this.model.showInModel(data);
   }
 }
 

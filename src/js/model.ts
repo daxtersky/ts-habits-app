@@ -1,13 +1,8 @@
 export class Model {
-  constructor() {
-    const mp = this.getElement('.m-model') as HTMLParagraphElement;
-    mp.textContent = this.write();
+  constructor() { }
+
+  showInModel = (data: string): void => {
+    console.log('4 event in model?', data);
   }
-
-  log = (): void => console.log('This is from Model Class!');
-  write = (): string => 'message from Model Class!';
-
-
-  getElement = (selector: string): HTMLElement => document.querySelector(selector);
 
 }
