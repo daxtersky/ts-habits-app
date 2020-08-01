@@ -18,7 +18,7 @@ export class View {
   // 6. statystyki historia nawyków (graf)*
 
   public buttonEvent = (handler: any): void => {
-    this.button.addEventListener('click', event => {
+    this.button?.addEventListener('click', event => {
       if ((event.target as Element).className === 'button') {
         handler(event);
         console.log('btn view.ts', handler, event);

@@ -32,8 +32,7 @@ Start the project in development environment in [localhost:1234](http://localhos
 ### Tech stack & used tools
 
 1. HTML5
-1. CSS3 + BEM
-1. Scss
+1. SCSS + BEM
 1. TypeScript
 1. Parcel
 1. Esling with Airbnb config

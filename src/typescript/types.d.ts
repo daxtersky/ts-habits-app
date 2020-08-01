@@ -12,7 +12,7 @@ interface Habit {
   activiTyActual: number;
 	activiTyGoal: number;
   habitColor: string;
-  // getColor(enums.HabitType): string;
+  // getColor(enums.HabitType): string; // https://www.youtube.com/watch?v=VbW6vWTaHOY
 	// optional... in part 2
 	activityFinished?: Date; // ??
 	positiveHabit?: boolean;

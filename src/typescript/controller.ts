@@ -15,4 +15,3 @@ class Controller {
     this.model.listenButtonClick(data);
   }
 }
-
