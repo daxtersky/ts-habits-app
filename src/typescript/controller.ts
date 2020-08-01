@@ -10,9 +10,9 @@ class Controller {
     this.view.buttonEvent(this.handleButtonClick);
   }
 
-  handleButtonClick = (data: string): void => {
-    console.log('CONTROLLER', data);
-    this.model.showInModel(data);
+  private handleButtonClick = (data: string): void => {
+    console.log('btn controller.ts', data);
+    this.model.listenButtonClick(data);
   }
 }
 

@@ -2,6 +2,16 @@ import { ColorTheme, HabitType } from './enums';
 import { Habit } from './types';
 
 export class Model {
+  private habits: Habit[] = [];
+
+  constructor() {
+    this.habits = [
+      { id: 1, name: 'Brush your teeth', order: 1, habitType: HabitType.Day, description: 'Brush your teeth twice everyday!', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day), },
+      { id: 2, name: 'Talk to a stranger', order: 2, habitType: HabitType.Week, description: 'Meet new people!', activiTyActual: 0, activiTyGoal: 1, habitColor: this.getDefaultColor(HabitType.Week)
+    }];
+    console.log('default habits', this.habits);
+  }
+
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {
       case HabitType.Day: return 'green';
@@ -10,43 +20,21 @@ export class Model {
       case HabitType.Year: return 'yellow';
     }
   }
-  private habits: Habit[] = [];
 
-  constructor() {
-    console.log('habits 1', this.habits);
+  //// App functions
+  // 1. Log in
+  // 2. Registration
+  // 3. Log out
+  // 4. Detele account
+  // 5. "Upgrade" account*
+  // 6. Add habit
+  // 7. Update habit
+  // 8. Delete habit
+  // 9. Change settings
+  // 10.
+
+  public listenButtonClick = (data: string): void => {
+    console.log('btn model.ts', data);
   }
-
-  public showInModel = (data: string): void => {
-    this.habits = [{
-      id: 1,
-      name: 'Brush your teeth',
-      order: 1,
-      habitType: HabitType.Day,
-      description: 'Brush your teeth twice everyday!',
-      activiTyActual: 0,
-      activiTyGoal: 2,
-      habitColor: this.getDefaultColor(HabitType.Day),
-      // optional... in part 2
-      // activityFinished?: Date; // ??
-      positiveHabit: true,
-      habitCreated: new Date(),
-    }, {
-      id: 2,
-      name: 'Talk to a stranger',
-      order: 2,
-      habitType: HabitType.Week,
-      description: 'Meet new people!',
-      activiTyActual: 0,
-      activiTyGoal: 1,
-      habitColor: this.getDefaultColor(HabitType.Week),
-      // optional... in part 2
-      // activityFinished?: Date; // ??
-      positiveHabit: true,
-      habitCreated: new Date(),
-    }]
-    console.log('habits', this.habits);
-    console.log('data', data);
-  }
-
 
 }
