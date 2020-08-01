@@ -1,12 +1,7 @@
-import '../scss/main.scss';
 import { View } from './view';
 import { Model } from './model';
-import { MyEnum } from './enums';
-import { MyInterface } from './types';
-import { ClassElement } from 'typescript';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // console.log('DOMContentLoaded', controller);
+document.addEventListener('DOMContentLoaded', (): Controller => {
   return new Controller(new View(), new Model());
 });
 
@@ -16,7 +11,7 @@ class Controller {
   }
 
   handleButtonClick = (data: string): void => {
-    console.log('3 event goes to controller', data);
+    console.log('CONTROLLER', data);
     this.model.showInModel(data);
   }
 }
