@@ -13,9 +13,10 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Lato', sans-serif;
+  background-color: $main-light-color;
 }
 .container {
-  background-color: $main-light-color;
+  background-image: linear-gradient(to right top, #0d2a55, #00415d, #006b70, #4a9473, #a2b775);
   height: 100%;
   // min-height: 1000px;
   // min-height: 1400px;
@@ -23,7 +24,7 @@ body{
   margin: 1rem auto;
   max-width: 1000px;
   border-radius: 5px;
-  color: $main-dark-color;
+  // color: $main-dark-color;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 800px auto;
@@ -31,7 +32,7 @@ body{
 
   .header { grid-area: 1 / 1 / 2 / 3;  }
   .aside { grid-area: 2 / 1 / 3 / 2; border-radius: 5px; }
-  .habits {
+  .main {
     grid-area: 2 / 2 / 3 / 3;
     border-radius: 5px;
     overflow-y: auto;
