@@ -1,9 +1,19 @@
 .header {
   margin: 0 auto;
+  display: flex;
+  // justify-content: space-between;
+  width: 100%;
   &__title {
     // margin-left: 200px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
+    display: flex;
+  }
+
+  &__breadcrumb {
+    margin-left: 50px;
+    font-size: 1.2rem;
+    align-self: center;
   }
 }
 
@@ -15,44 +25,44 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    text-transform: uppercase;
 
     &__item {
       padding: 10px 0;
       width: 100%;
-    }
-    &__item:first-of-type {
+      display: flex;
+      text-transform: uppercase;
       font-weight: bold;
+
     }
     &__item:hover {
       color: $main-darker-color;
-      font-weight: bold;
       cursor: pointer;
     }
-    &__item:first-of-type:hover {
-      color: $main-action-color;
-    }
-
   }
 }
 
 .habits {
-  padding: 1rem;
+  // height: 100%;
+  // padding: 1rem 0;
+  background-color: $main-darker-light-color;
+
   display: flex;
   // justify-content: center;
   // align-items: center;
   flex-direction: column;
-  margin: 0 200px;
+  // margin: 0 200px;
+  padding: 0 1rem;
 
   &__title {
     text-transform: uppercase;
     font-size: 1.3rem;
+    padding-top: 1rem;
   }
   &__list {
     font-style: italic;
   }
   &__item:first-of-type {
-  margin-top: 25px;
+    margin-top: 25px;
   }
   &__item {
   padding: 10px 10px;
