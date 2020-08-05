@@ -18,7 +18,9 @@
 <body>
 
   <main class="container">
-    <header class="header">
+
+    <section class="home-page"></section>
+    <header class="header" style="display: none;">
       <h2 class="header__logo">
         <ion-icon class="header__icon" name="bulb"></ion-icon>
         <span class="header__username">Habits App</span><!-- TODO header__logo i header_user need to be changed -->
@@ -29,7 +31,7 @@
       </div>
     </header>
 
-    <aside class="aside">
+    <aside class="aside" style="display: none;">
       <nav class="nav">
         <a class="nav__item">
           <ion-icon class="nav__icon" name="settings-sharp"></ion-icon>
@@ -48,7 +50,7 @@
       </nav>
     </aside>
 
-    <section class="habits">
+    <section class="habits" style="display: none;">
       <section class="habits-wrapper">
         <h3 class="habits-wrapper__title">Get things done Miko!</h3>
         <ol class="habits-wrapper__list">
@@ -85,18 +87,51 @@
       </section>
     </section>
 
-    <footer class="footer">
-      <button class="button">
+    <footer class="footer" style="display: none;">
+      <button class="button button--add-habit">
         <ion-icon class="button__icon" name="add-circle-sharp"></ion-icon>Add habit
       </button>
-      <a class="footer__link" href="https://mikey-studio.xyz/" target="_blank">&copy; 2020 Mikey
+      <a class="link" href="https://mikey-studio.xyz/" target="_blank">&copy; 2020 Mikey
         Studio</a>
-      <a class="footer__link" href="https://github.com/daxtersky/ts-habits-app" target="_blank">Project
+      <a class="link" href="https://github.com/daxtersky/ts-habits-app" target="_blank">Project
         repo</a>
       <ion-icon class="footer__icon" name="logo-html5"></ion-icon>
       <ion-icon class="footer__icon" name="logo-sass"></ion-icon>
       <ion-icon class="footer__icon" name="logo-javascript"></ion-icon>
     </footer>
+
+    <div class="modal">
+      <div class="modal__register">
+        <h2 class="modal__title">Habits app</h2>
+        <form class="modal__form">
+            <input class="modal__input" type="text" name="email" placeholder="Email" autofocus>
+            <input class="modal__input" type="text" name="password" placeholder="Password">
+            <input class="modal__input" type="text" name="name" placeholder="Your name">
+            <button class="button button--login-register">Register</button>
+            <p class="modal__text">Already have an account?<a class="link" href="#">Login</a></p>
+            <p class="modal__text modal__text--error">&nbsp;</p>
+        </form>
+      </div>
+      <div class="modal__login"  style="display: none;">
+        <h2 class="modal__title">Habits app</h2>
+        <form class="modal__form">
+            <input class="modal__input" type="text" name="email" placeholder="Email">
+            <input class="modal__input" type="text" name="password" placeholder="Password">
+            <p class="modal__text"><a class="link" href="#">Forgot password?</a></p>
+            <button class="button button--login-register">Login</button>
+            <p class="modal__text">Not registered? <a class="link" href="#">Create an account</a></p>
+            <p class="modal__text modal__text--error">&nbsp;</p>
+        </form>
+      </div>
+      <div class="modal__confirm" style="display: none;">
+        <h2 class="modal__title">Modal title</h2>
+        <form class="modal__form">
+            <input class="modal__input" type="text" name="" id="" placeholder="placeholder...">
+            <button class="button button--confirm">Confirm</button>
+            <p class="modal__text modal__text--error">&nbsp;</p>
+        </form>
+      </div>
+    </div>
 
   </main>
 

@@ -1,5 +1,5 @@
 .header {
-  @include box(1rem, $light-theme-box);
+  @include box(1rem, $light-theme-light);
   display: flex;
   align-items: center;
 
@@ -24,7 +24,7 @@
 }
 
 .aside {
-  @include box(1rem, $light-theme-box);
+  @include box(1rem, $light-theme-light);
 
   .nav {
     display: flex;
@@ -46,8 +46,6 @@
     }
   }
 }
-
-
 
 .habits {
   display: flex;
@@ -108,37 +106,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  @include box(.5rem, $light-theme-box);
+  @include box(.5rem, $light-theme-light);
 
-  &__link {
-    padding: 0 5px;
-    color: inherit;
-    &:hover {
-      font-weight: bold;
-    }
-  }
   &__icon {
     font-size: 25px;
     padding: 0 5px;
   }
 }
-
-.button {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  border: 0;
-  cursor: pointer;
-  position: absolute;
-  right: 40px;
-  bottom: 100px;
-  color: $light-theme-darker;
-  font-size: 1.3rem;
-  @include box(.9rem, $light-theme-box);
-  &__icon {
-    font-size: 30px;
-    padding-right: 8px;
-  }
-
-}
-

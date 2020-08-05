@@ -2,6 +2,5 @@
 @import 'helpers';
 @import 'general';
 @import 'rwd';
-// pages
-// @import 'home-page';
-@import 'habit-list';
+@import 'shared';
+@import 'habit-list'; // TODO change name

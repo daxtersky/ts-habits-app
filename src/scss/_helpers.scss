@@ -1,7 +1,11 @@
-$light-theme-box: #eee;
+$light-theme-bright: #fff;
+$light-theme-light: #eee;
 $light-theme-background: #bbb;
 $light-theme-darker: #111;
-$light-theme-gradient: linear-gradient(to left bottom, #eeeeee, #e5e5e5, #dddddd, #d4d4d4, #cccccc);
+$light-theme-gradient: linear-gradient(to left bottom, #dddddd, #cacaca, #b8b7b8, #a6a5a5, #949393);
+$light-active: #2270C2;
+$light-focused: #719ECE;
+$light-warning: #f00;
 
 @mixin box($padding, $background-color) {
   padding: $padding;
