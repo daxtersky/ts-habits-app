@@ -1,0 +1,62 @@
+
+@media (max-width: 767px) {
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__inner {
+      height: 100%;
+
+      // .header__icon {
+        // font-size: 1rem;
+      // }
+      .header__username {
+        font-size: 1rem;
+      }
+
+      .habits {
+        padding: 0;
+
+        .habits-wrapper {
+          &__title {
+            font-size: 1rem;
+          }
+
+          &__item {
+            margin: 8px 5px;
+            font-size: .9rem;
+          }
+        }
+      }
+
+      .aside {
+        width: 55px;
+        .icon-wrapper__text {
+          display: none;
+        }
+        &:active, &:focus, // TODO check on real mobile
+        &:hover  {
+          position: absolute;
+          height: 100%;
+          width: 200px;
+
+          .icon-wrapper__text {
+            display: block;
+          }
+        }
+      }
+
+      .footer {
+        font-size: 0.8rem;
+      }
+
+      .button {
+        right: 20px;
+        bottom: 70px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

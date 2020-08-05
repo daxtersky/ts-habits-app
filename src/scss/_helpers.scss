@@ -1,0 +1,13 @@
+$light-theme-box: #eee;
+$light-theme-background: #bbb;
+$light-theme-darker: #111;
+$light-theme-gradient: linear-gradient(to left bottom, #eeeeee, #e5e5e5, #dddddd, #d4d4d4, #cccccc);
+
+@mixin box($padding, $background-color) {
+  padding: $padding;
+  border-radius: 5px;
+  background-color: $background-color;
+  -webkit-box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+  -moz-box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+  box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+}

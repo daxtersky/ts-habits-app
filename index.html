@@ -17,80 +17,89 @@
 
 <body>
 
-  <div class="container">
+  <main class="container">
+    <div class="container__inner">
 
-    <header class="header" style="background-color: #4a9473; padding: .4rem; border-radius: 5px;">
-      <h2 class="header__title">
-        <ion-icon name="toggle-sharp" style="font-size: 30px;"></ion-icon>
-        <span style="padding-left: 4px;">Habits App</span>
-      </h2>
-      <h2 class="header__breadcrumb">> Habit list</h2>
-      <div style="margin-left: auto; display: flex; align-items: center;">
-        <span style="padding-right: 4px;">Miko Daxtersky</span>
-        <ion-icon name="person-circle-sharp" style="font-size: 30px;"></ion-icon>
-      </div>
-    </header>
-    <aside class="aside" style="position: relative; background-color: #4a9473;">
-      <nav class="nav">
-        <a class="nav__item">
-          <ion-icon name="settings-sharp"></ion-icon><span style="padding-left: 4px">Settings</span>
-        </a>
-        <a class="nav__item">
-          <ion-icon name="log-out-sharp"></ion-icon><span style="padding-left: 4px">Sign out</span>
-        </a>
-        <a class="nav__item">
-          <ion-icon name="paper-plane-sharp"></ion-icon>
-          </ion-icon><span style="padding-left: 4px">Share us!</span>
-        </a>
-        <button style="display: flex; align-items: center; background-color: transparent; font-weight: bold; border: 0; cursor: pointer; border-radius: 5px; position: absolute; left: 20px; bottom: 40px; color: white; font-size: 1.2rem;">
-          <ion-icon name="add-circle-sharp" style="font-size: 45px;"></ion-icon>Add habit
+      <header class="header">
+        <h2 class="header__logo">
+          <ion-icon class="header__icon" name="bulb"></ion-icon>
+          <span class="header__username">Habits App</span><!-- TODO header__logo i header_user need to be changed -->
+        </h2>
+        <div class="header__user">
+          <span class="header__username">Miko Daxtersky</span>
+          <ion-icon class="header__icon" name="person-circle-sharp"></ion-icon>
+        </div>
+      </header>
+
+      <aside class="aside">
+        <nav class="nav">
+          <a class="nav__item">
+            <ion-icon class="nav__icon" name="settings-sharp"></ion-icon>
+            <span class="icon-wrapper__text">Settings</span>
+          </a>
+          <a class="nav__item">
+            <ion-icon class="nav__icon" name="log-out-sharp"></ion-icon>
+            <span class="icon-wrapper__text">Sign out</span>
+          </a>
+          <a class="nav__item">
+            <ion-icon class="nav__icon" name="paper-plane-sharp"></ion-icon></ion-icon>
+            <span class="icon-wrapper__text">Share us!</span>
+          </a>
+
+        </nav>
+      </aside>
+
+      <section class="habits">
+        <section class="habits-wrapper">
+          <h3 class="habits-wrapper__title">Get things done Miko!</h3>
+          <ol class="habits-wrapper__list">
+            <li class="habits-wrapper__item">Brush your teeth</li>
+            <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
+            <li class="habits-wrapper__item">Talk to a stranger</li>
+            <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+            <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
+            <li class="habits-wrapper__item">Don't eat junk food</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+            <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
+            <li class="habits-wrapper__item">Don't eat junk food</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+            <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
+            <li class="habits-wrapper__item">Don't eat junk food</li>
+            <li class="habits-wrapper__item">Brush your teeth</li>
+            <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
+            <li class="habits-wrapper__item">Talk to a stranger</li>
+            <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+            <li class="habits-wrapper__item">Talk to a stranger</li>
+            <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+            <li class="habits-wrapper__item">Brush your teeth</li>
+            <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
+            <li class="habits-wrapper__item">Talk to a stranger</li>
+            <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
+            <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+          </ol>
+        </section>
+        <section class="habits-wrapper">
+          <h3 class="habits-wrapper__title">Suggested habits list *</h3>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <button class="button">
+          <ion-icon class="button__icon" name="add-circle-sharp"></ion-icon>Add habit
         </button>
-      </nav>
-    </aside>
-    <main class="main" >
-      <section class="habits-wrapper">
-        <h3 class="habits-wrapper__title">Get things done Miko!</h3>
-        <ol class="habits-wrapper__list">
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-        </ol>
-      </section>
-      <section class="habits-wrapper">
-        <h3 class="habits-wrapper__title">Suggested habits list **</h3>
-      </section>
-    </main>
-
-    <footer class="footer" style="display: flex; justify-content: flex-end; align-items: center;">
-      <a href="https://mikey-studio.xyz/" style="padding-left: 15px; text-decoration: none;">&copy; 2020 Mikey
-        Studio</a>
-      <a href="https://github.com/daxtersky/ts-habits-app" style="padding-left: 15px; text-decoration: none;">Project
-        repo</a>
-      <ion-icon name="logo-html5" style="font-size: 25px; padding-left: 15px;"></ion-icon>
-      <ion-icon name="logo-sass" style="font-size: 25px; padding-left: 15px;"></ion-icon>
-      <ion-icon name="logo-javascript" style="font-size: 25px; padding-left: 15px;"></ion-icon>
-    </footer>
-  </div>
+        <a class="footer__link" href="https://mikey-studio.xyz/" target="_blank">&copy; 2020 Mikey
+          Studio</a>
+        <a class="footer__link" href="https://github.com/daxtersky/ts-habits-app" target="_blank">Project
+          repo</a>
+        <ion-icon class="footer__icon" name="logo-html5"></ion-icon>
+        <ion-icon class="footer__icon" name="logo-sass"></ion-icon>
+        <ion-icon class="footer__icon" name="logo-javascript"></ion-icon>
+      </footer>
+    </div>
+  </main>
 
   <script src="./src/typescript/controller.ts"></script>
 

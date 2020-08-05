@@ -1,84 +1,85 @@
 .header {
-  margin: 0 auto;
+  @include box(1rem, $light-theme-box);
   display: flex;
-  // justify-content: space-between;
-  width: 100%;
-  &__title {
-    // margin-left: 200px;
-    font-size: 1.8rem;
+  align-items: center;
+
+  &__logo {
+    font-size: 2rem;
+    font-weight: 800;
     text-transform: uppercase;
     display: flex;
-    align-items: center;
-    font-weight: 600;
   }
-
-  &__breadcrumb {
-    margin-left: 30px;
-    font-size: 1.2rem;
-    align-self: center;
+  &__user {
+    margin-left: auto;
+    display: flex;
+  }
+  &__username {
+    display: flex;
+    align-items: center;
+    padding-right: 6px;
+  }
+  &__icon {
+    font-size: 30px;
   }
 }
 
 .aside {
-  padding: 1rem;
-  background-color: $main-dark-light-color;
+  @include box(1rem, $light-theme-box);
 
   .nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     &__item {
-      padding: 10px 0;
-      width: 100%;
+      padding: 10px 15px 10px 0;
       display: flex;
+      align-items: center;
       text-transform: uppercase;
-      font-weight: bold;
-
+      &:hover {
+        color: $light-theme-darker;
+        cursor: pointer;
+      }
     }
-    &__item:hover {
-      color: $main-darker-color;
-      cursor: pointer;
+    &__icon {
+      font-size: 25px;
+      padding-right: 5px;
     }
   }
 }
 
-.main {
-  // height: 100%;
-  // padding: 1rem 0;
-  // background-color: $main-darker-light-color;
 
+
+.habits {
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   flex-direction: column;
-  // margin: 0 200px;
   padding: 0 1rem;
+  border-radius: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .habits-wrapper {
-
     &__title {
       text-transform: uppercase;
       font-size: 1.3rem;
       padding-top: 1rem;
     }
-    &__list {
-      font-style: italic;
-    }
+    // &__list {
+    //   font-style: italic;
+    // }
     &__item:first-of-type {
       margin-top: 25px;
     }
     &__item {
       margin: 10px;
       padding: 5px;
+      &:hover {
+        color: $light-theme-darker;
+        font-weight: bold;
+        cursor: pointer;
+      }
     }
     &__item::before {
-      content: '@ ';
-    }
-    &__item:hover {
-      color: $main-darker-color;
-      font-weight: bold;
-      cursor: pointer;
+      content: '@ '; // TODO 3 circle states
     }
     &__item:nth-of-type(n + 1) {
       background-color: #F38630;
@@ -100,11 +101,44 @@
       background-color: #ffc75f;
     }
   }
-
 }
 
 .footer {
-  padding: .4rem;
-  background-color: #4a9473;
-  border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include box(.5rem, $light-theme-box);
+
+  &__link {
+    padding: 0 5px;
+    color: inherit;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &__icon {
+    font-size: 25px;
+    padding: 0 5px;
+  }
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  bottom: 100px;
+  color: $light-theme-darker;
+  font-size: 1.3rem;
+  @include box(.9rem, $light-theme-box);
+  &__icon {
+    font-size: 30px;
+    padding-right: 8px;
+  }
+
+}
+
