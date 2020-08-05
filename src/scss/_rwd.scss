@@ -2,21 +2,14 @@
 @media (max-width: 767px) {
   .container {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    padding: .4rem;
 
-    &__inner {
-      height: 100%;
-
-      // .header__icon {
-        // font-size: 1rem;
-      // }
-      .header__username {
+    .header__username {
         font-size: 1rem;
-      }
+    }
 
-      .habits {
+    .habits {
         padding: 0;
 
         .habits-wrapper {
@@ -29,9 +22,9 @@
             font-size: .9rem;
           }
         }
-      }
+    }
 
-      .aside {
+    .aside {
         width: 55px;
         .icon-wrapper__text {
           display: none;
@@ -46,17 +39,17 @@
             display: block;
           }
         }
-      }
-
-      .footer {
-        font-size: 0.8rem;
-      }
-
-      .button {
-        right: 20px;
-        bottom: 70px;
-        font-size: 1.1rem;
-      }
     }
+
+    .footer {
+      font-size: 0.8rem;
+    }
+
+    .button {
+      right: 20px;
+      bottom: 70px;
+      font-size: 1.1rem;
+    }
+
   }
 }
