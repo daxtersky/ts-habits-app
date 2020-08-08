@@ -15,15 +15,17 @@ export class View {
     DOMElements.inputRegisterEmail.select();
   }
 
-  public bindLinkToLoginClick = () => {
-    DOMElements.modalLinkToLogin.addEventListener('click', () => {
+  // WELCOME PAGE
+
+  public bindNavigateToLoginModalClick = () => {
+    DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.style.display = 'none';
       DOMElements.modalLogin.style.display = 'initial';
     })
   }
 
-  public bindLinkToRegisterClick = () => {
-    DOMElements.modalLinkToRegister.addEventListener('click', () => {
+  public bindNavigateToRegisterModalClick = () => {
+    DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.style.display = 'initial';
       DOMElements.modalLogin.style.display = 'none';
     })
@@ -65,6 +67,21 @@ export class View {
       DOMElements.modalWrapper.style.display = 'none';
       DOMElements.modalRegister.style.display = 'none';
       DOMElements.modalLogin.style.display = 'none';
+    }
+  }
+
+  // HABITS PAGE
+  public bindNavigateLogOutClick = (handler: any) => {
+    DOMElements.navigateToLogOut.addEventListener('click', () => {
+      handler();
+    })
+  }
+  public showLogoutResult(isLogged: boolean): void {
+    if (!isLogged) {
+      DOMElements.welcomePage.style.display = 'grid';
+      DOMElements.habitsPage.style.display = 'none';
+      DOMElements.modalWrapper.style.display = 'initial';
+      DOMElements.modalLogin.style.display = 'initial';
     }
   }
 

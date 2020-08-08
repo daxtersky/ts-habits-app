@@ -14,11 +14,13 @@ export class Model {
     // console.log('default habits', this.habits);
   }
 
+  // WELCOME PAGE
+
   public validateRegister = (config: AuthConfig): boolean => this.isRegistered = this.authValidator(config);
 
   public validateLogin = (config: AuthConfig): boolean => this.isLogged = this.authValidator(config);
 
-  private authValidator(config: AuthConfig): boolean {
+  private authValidator = (config: AuthConfig): boolean => {
     const emailValidator = /\S+@\S+\.\S+/;
     const configInputs = Object.keys(config).map(key => config[key]);
 
@@ -33,6 +35,10 @@ export class Model {
     }
     return true;
   }
+
+  // HABITS PAGE
+
+  public onLogout = (): boolean => this.isLogged = false;
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {

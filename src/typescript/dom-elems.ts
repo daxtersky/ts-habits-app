@@ -2,6 +2,12 @@ const getElement = (selector: string): HTMLElement => document.querySelector(sel
 
 export const DOMElements = {
   // WELCOME PAGE
+  modalWrapper: <HTMLDivElement>getElement('.modal'),
+  modalRegister: <HTMLDivElement>getElement('.modal__register'),
+  navigateToLogin: <HTMLDivElement>getElement('.link-to-login'),
+  modalLogin: <HTMLDivElement>getElement('.modal__login'),
+  navigateToRegister: <HTMLDivElement>getElement('.link-to-register'),
+
   welcomePage: <HTMLElement>getElement('.welcome-page'),
 
   inputRegisterEmail: <HTMLInputElement>getElement('.modal__input--register-email'),
@@ -18,14 +24,7 @@ export const DOMElements = {
 
   // HABITS PAGE
   habitsPage: <HTMLElement>getElement('.habits-page'),
+  navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
 
-  // SHARED ELEMENTS
-  modalWrapper: <HTMLDivElement>getElement('.modal'),
-
-  modalRegister: <HTMLDivElement>getElement('.modal__register'),
-  modalLinkToLogin: <HTMLDivElement>getElement('.link-to-login'),
-
-  modalLogin: <HTMLDivElement>getElement('.modal__login'),
-  modalLinkToRegister: <HTMLDivElement>getElement('.link-to-register'),
 
 }
