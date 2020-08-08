@@ -14,42 +14,27 @@ export class Model {
     // console.log('default habits', this.habits);
   }
 
-  handleValidation(callback) {
-    this.isRegistered = callback;
-  }
-
-  public registerEvent = (data: AuthConfig): void => {
-    if (this.validateRegister(data)) {
-      this.isRegistered = true;
-    } else {
-      this.isRegistered = false;
-    }
-  }
-  public loginEvent = (data: AuthConfig): void => {
-    if (this.validateLogin(data)) {
-      this.isLogged = true;
-      console.log('logged!');
-    } else {
-      this.isLogged = false;
-      console.log('login error!');
+  public validateRegister = (data: AuthConfig): void => {
+    this.isRegistered = this.getRegisterResult(data);
+    if (this.isRegistered) {
+      console.log('registered!');
     }
   }
 
-  private validateRegister = (config: AuthConfig) => {
-    console.log('validateRegister', config);
+  private getRegisterResult = (config: AuthConfig) => {
     if (config.email === '' || config.password === '' || config.username === '') {
       return false;
     }
     return true;
   }
 
-  private validateLogin = (config: AuthConfig) => {
-    console.log('validateLogin', config);
-    if (config.email === '' || config.password === '') {
-      return false;
-    }
-    return true;
-  }
+  // private validateLogin = (config: AuthConfig) => {
+  //   console.log('validateLogin', config);
+  //   if (config.email === '' || config.password === '') {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {

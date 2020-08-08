@@ -25,7 +25,7 @@ export class View {
     this.inputRegisterEmail.select();
   }
 
-  public bindRegisterClick = (handler: any): void => {
+  public bindRegisterClick = (handler: (config: AuthConfig) => void): void => {
     this.buttonRegister.addEventListener('click', event => {
       if ((event.target as Element).className.includes(this.buttonRegister.className)) {
         const registerConfig: AuthConfig = {
@@ -38,29 +38,20 @@ export class View {
     })
   }
 
-  validationCheck(isRegistered) {
-    console.log('VIEW user is registered?', isRegistered);
-    if (isRegistered) {
-      this.errorMessage.innerText = '';
-    } else {
-      this.errorMessage.innerText = 'error';
-    }
-  }
-
   public bindLoginClick = (handler: any): void => {
     this.buttonLogin.addEventListener('click', event => {
       if ((event.target as Element).className.includes(this.buttonLogin.className)) {
         const loginConfig: AuthConfig = {
           email: this.userLoginMail,
-          password: this.userLoginPassword,
+          password: this.userLoginPassword
         }
         handler(loginConfig);
       }
     })
   }
 
-  // 1
-  // 2
-  // show error validation in html
+  public showRegisterResult(isRegistered: boolean): void {
+    this.errorMessage.innerText = isRegistered ? '' : 'Registration error!';
+  }
 
 }
