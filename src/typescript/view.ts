@@ -1,62 +1,71 @@
 import '../scss/main.scss';
 import { AuthConfig } from './types';
+import { DOMElements } from './dom-elems';
 
 export class View {
-  private getElement = (selector: string): HTMLElement => document.querySelector(selector);
 
-  private inputRegisterEmail = <HTMLInputElement>this.getElement('.modal__input--register-email'); // TODO validation
-  private inputRegisterPassword = <HTMLInputElement>this.getElement('.modal__input--register-password');
-  private inputRegisterUsername = <HTMLInputElement>this.getElement('.modal__input--register-name');
-  private inputLoginEmail = <HTMLInputElement>this.getElement('.modal__input--login-email'); // TODO validation
-  private inputLoginPassword = <HTMLInputElement>this.getElement('.modal__input--login-password');
-  private buttonRegister = <HTMLButtonElement>this.getElement('.button--auth--register');
-  private buttonLogin = <HTMLButtonElement>this.getElement('.button--auth--login');
-  private registerErrorMessage = <HTMLParagraphElement>this.getElement('.modal__text--register-error');
-  private loginErrorMessage = <HTMLParagraphElement>this.getElement('.modal__text--login-error');
-  // private linkToLogin = <HTMLAnchorElement>this.getElement('.link-to-login');
-
-  get userRegisterMail() { return this.inputRegisterEmail.value }
-  get userRegisterPassword() { return this.inputRegisterPassword.value }
-  get userRegisterUsername() { return this.inputRegisterUsername.value }
-  get userLoginMail() { return this.inputLoginEmail.value }
-  get userLoginPassword() { return this.inputLoginPassword.value }
+  get userRegisterMail() { return DOMElements.inputRegisterEmail.value }
+  get userRegisterPassword() { return DOMElements.inputRegisterPassword.value }
+  get userRegisterUsername() { return DOMElements.inputRegisterUsername.value }
+  get userLoginMail() { return DOMElements.inputLoginEmail.value }
+  get userLoginPassword() { return DOMElements.inputLoginPassword.value }
 
   constructor() {
     document.addEventListener('click', e => e.preventDefault());
-    this.inputRegisterEmail.select();
+    DOMElements.inputRegisterEmail.select();
+  }
+
+  public bindLinkToLoginClick = () => {
+    DOMElements.modalLinkToLogin.addEventListener('click', () => {
+      DOMElements.modalRegister.style.display = 'none';
+      DOMElements.modalLogin.style.display = 'initial';
+    })
+  }
+
+  public bindLinkToRegisterClick = () => {
+    DOMElements.modalLinkToRegister.addEventListener('click', () => {
+      DOMElements.modalRegister.style.display = 'initial';
+      DOMElements.modalLogin.style.display = 'none';
+    })
   }
 
   public bindRegisterClick = (handler: (config: AuthConfig) => void): void => {
-    this.buttonRegister.addEventListener('click', event => {
-      if ((event.target as Element).className.includes(this.buttonRegister.className)) {
-        const registerConfig: AuthConfig = {
-          email: this.userRegisterMail,
-          password: this.userRegisterPassword,
-          username: this.userRegisterUsername
-        }
-        handler(registerConfig);
-      }
+    DOMElements.buttonRegister.addEventListener('click', () => {
+      handler({
+        email: this.userRegisterMail,
+        password: this.userRegisterPassword,
+        username: this.userRegisterUsername
+      })
     })
   }
 
   public bindLoginClick = (handler: any): void => {
-    this.buttonLogin.addEventListener('click', event => {
-      if ((event.target as Element).className.includes(this.buttonLogin.className)) {
-        const loginConfig: AuthConfig = {
-          email: this.userLoginMail,
-          password: this.userLoginPassword
-        }
-        handler(loginConfig);
-      }
+    DOMElements.buttonLogin.addEventListener('click', () => {
+      handler({
+        email: this.userLoginMail,
+        password: this.userLoginPassword
+      })
     })
   }
 
   public showRegisterResult(isRegistered: boolean): void {
-    this.registerErrorMessage.innerText = isRegistered ? '' : 'Error! You need to put an email, 4-12 character password and 4-12 character username and  ';
+    DOMElements.registerErrorMessage.innerText = isRegistered
+      ? ''
+      : 'Error! You need to put a correct email, 4-12 character password and 4-12 character username! :)';
   }
 
   public showLoginResult(isLogged: boolean): void {
-    this.loginErrorMessage.innerText = isLogged ? '' : 'Login error!';
+    if (!isLogged) {
+      DOMElements.loginErrorMessage.innerText = 'Login error!';
+    } else {
+      DOMElements.loginErrorMessage.innerText = '';
+      console.log('TODO login!',);
+      DOMElements.welcomePage.style.display = 'none';
+      DOMElements.habitsPage.style.display = 'grid';
+      DOMElements.modalWrapper.style.display = 'none';
+      DOMElements.modalRegister.style.display = 'none';
+      DOMElements.modalLogin.style.display = 'none';
+    }
   }
 
 }

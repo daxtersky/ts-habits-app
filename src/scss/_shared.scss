@@ -1,3 +1,21 @@
+$light-theme-bright: #fff;
+$light-theme-light: #eee;
+$light-theme-background: #bbb;
+$light-theme-darker: #111;
+$light-theme-gradient: linear-gradient(to left bottom, #dddddd, #cacaca, #b8b7b8, #a6a5a5, #949393);
+$light-active: #2270C2;
+$light-focused: #719ECE;
+$light-warning: #f00;
+
+@mixin box($padding, $background-color) {
+  padding: $padding;
+  border-radius: 5px;
+  background-color: $background-color;
+  -webkit-box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+  -moz-box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+  box-shadow: 5px 5px 11px 0px rgba(100,100,100,1);
+}
+
 .link {
   padding: 0 5px;
   color: inherit;
@@ -54,7 +72,6 @@
   left: calc(50% - 150px);
   width: 300px;
   @include box(1rem, $light-theme-light);
-  // display: none; // TODO pages
 
   &__text {
     margin: .4rem 0;
@@ -65,12 +82,15 @@
     }
 
   }
-  // &__register {
-  // }
-  // &__login {
-  // }
-  // &__confirm {
-  // }
+  &__register {
+  }
+  &__login {
+    display: none; // not logged
+  }
+  &__confirm {
+    display: none; // not logged
+
+  }
   &__title {
     font-size: 2rem;
     text-transform: uppercase;

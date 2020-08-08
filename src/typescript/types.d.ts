@@ -1,5 +1,4 @@
-import * as enums from './enums';
-// https://lukasbehal.com/2017-05-22-enums-in-declaration-files/
+import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-declaration-files/
 
 type MyFunction = () => void;
 

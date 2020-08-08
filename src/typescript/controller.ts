@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', (): Controller => {
 
 class Controller {
   constructor(public view: View, public model: Model) {
+    this.view.bindLinkToLoginClick();
+    this.view.bindLinkToRegisterClick();
     this.view.bindRegisterClick(this.handleRegister);
     this.view.bindLoginClick(this.handleLogin);
   }
