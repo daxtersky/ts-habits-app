@@ -14,12 +14,12 @@
   color: $light-theme-darker;
   transition: all 300ms ease-out;
 
-  &:hover {
+  &:hover { // TODO , &:focus, &:active
     text-decoration: underline;
     color: $light-theme-light;
     background-color: $light-active;
   }
-  &--login-register {
+  &--auth {
     margin: .4rem 0;
     width: 100px;
     font-size: .8rem;
@@ -54,15 +54,17 @@
   left: calc(50% - 150px);
   width: 300px;
   @include box(1rem, $light-theme-light);
-  // display: none;
+  // display: none; // TODO pages
 
   &__text {
     margin: .4rem 0;
 
     font-size: .9rem;
-    &--error {
+    &--register-error {
+      height: 100%;
       color: $light-warning;
     }
+
   }
   // &__register {
   // }
@@ -71,7 +73,9 @@
   // &__confirm {
   // }
   &__title {
-    font-size: 1.3rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
     padding-bottom: 1rem;
   }
   &__form {

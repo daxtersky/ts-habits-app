@@ -61,15 +61,19 @@
       font-size: 1.3rem;
       padding-top: 1rem;
     }
-    // &__list {
-    //   font-style: italic;
-    // }
+    &__list {
+      font-style: italic;
+      // border: 1px solid red;
+      margin-top: 20px;
+    }
     &__item:first-of-type {
-      margin-top: 25px;
     }
     &__item {
       margin: 10px;
       padding: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         color: $light-theme-darker;
         font-weight: bold;
@@ -80,23 +84,19 @@
       content: '@ '; // TODO 3 circle states
     }
     &__item:nth-of-type(n + 1) {
-      background-color: #F38630;
-      width: 20%;
+      background: linear-gradient(90deg, #F38630 20%, white 0%);
     }
     &__item:nth-of-type(n + 2) {
-      background-color: #A7DBD8;
-      width: 60%;
+      background: linear-gradient(90deg, #A7DBD8 60%, white 0%);
     }
     &__item:nth-of-type(3n + 1) {
-      background-color: #F4743B;
-      width: 100%;
+      background: linear-gradient(90deg, #F4743B 30%, white 0%);
     }
     &__item:nth-of-type(4n + 1) {
-      background-color: #69D2E7;
-      width: 80%;
+      background: linear-gradient(90deg, #69D2E7 50%, white 0%);
     }
     &__item:nth-of-type(5n + 1) {
-      background-color: #ffc75f;
+      background: linear-gradient(90deg, #ffc75f 80%, white 0%);
     }
   }
 }

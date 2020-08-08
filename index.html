@@ -17,21 +17,21 @@
 
 <body>
 
-  <main class="container">
+  <main class="container" style="display: initial;"><!-- style="display: grid;" style="display: initial;" -->
 
     <section class="home-page"></section>
-    <header class="header" style="display: none;">
+    <header class="header" style="display: none;"> <!-- style="display: none;" -->
       <h2 class="header__logo">
         <ion-icon class="header__icon" name="bulb"></ion-icon>
         <span class="header__username">Habits App</span><!-- TODO header__logo i header_user need to be changed -->
       </h2>
       <div class="header__user">
-        <span class="header__username">Miko Daxtersky</span>
+        <span class="header__username">Miko</span>
         <ion-icon class="header__icon" name="person-circle-sharp"></ion-icon>
       </div>
     </header>
 
-    <aside class="aside" style="display: none;">
+    <aside class="aside" style="display: none;"> <!-- style="display: none;" -->
       <nav class="nav">
         <a class="nav__item">
           <ion-icon class="nav__icon" name="settings-sharp"></ion-icon>
@@ -50,44 +50,48 @@
       </nav>
     </aside>
 
-    <section class="habits" style="display: none;">
+    <section class="habits" style="display: none;"> <!-- style="display: none;" -->
       <section class="habits-wrapper">
         <h3 class="habits-wrapper__title">Get things done Miko!</h3>
         <ol class="habits-wrapper__list">
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Train yoga for 20 minutes</li>
-          <li class="habits-wrapper__item">Don't eat junk food</li>
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
-          <li class="habits-wrapper__item">Brush your teeth</li>
-          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</li>
-          <li class="habits-wrapper__item">Talk to a stranger</li>
-          <li class="habits-wrapper__item">Drink minimum 2 litres of water</li>
-          <li class="habits-wrapper__item">Sleep minimum 7 hours</li>
+          <li class="habits-wrapper__item">Brush your teeth</span></li>
+          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</span></li>
+          <li class="habits-wrapper__item">Talk to a stranger</span></li>
+          <li class="habits-wrapper__item">Drink minimum 2 litres of water</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
+          <li class="habits-wrapper__item">Train yoga for 20 minutes</span></li>
+          <li class="habits-wrapper__item">Don't eat junk food</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
+          <li class="habits-wrapper__item">Train yoga for 20 minutes</span></li>
+          <li class="habits-wrapper__item">Don't eat junk food</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
+          <li class="habits-wrapper__item">Train yoga for 20 minutes</span></li>
+          <li class="habits-wrapper__item">Don't eat junk food</span></li>
+          <li class="habits-wrapper__item">Brush your teeth</span></li>
+          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</span></li>
+          <li class="habits-wrapper__item">Talk to a stranger</span></li>
+          <li class="habits-wrapper__item">Drink minimum 2 litres of water</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
+          <li class="habits-wrapper__item">Talk to a stranger</span></li>
+          <li class="habits-wrapper__item">Drink minimum 2 litres of water</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
+          <li class="habits-wrapper__item">Brush your teeth</span></li>
+          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</span></li>
+          <li class="habits-wrapper__item">Talk to a stranger</span></li>
+          <li class="habits-wrapper__item">Drink minimum 2 litres of water</span></li>
+          <li class="habits-wrapper__item">Sleep minimum 7 hours</span></li>
         </ol>
       </section>
       <section class="habits-wrapper">
         <h3 class="habits-wrapper__title">Suggested habits list *</h3>
+        <ol class="habits-wrapper__list">
+          <li class="habits-wrapper__item">Brush your teeth</span></li>
+          <li class="habits-wrapper__item">Read a book for mininum 30 minutes</span></li>
+        </ol>
       </section>
     </section>
 
-    <footer class="footer" style="display: none;">
+    <footer class="footer" style="display: none;"> <!-- style="display: none;" -->
       <button class="button button--add-habit">
         <ion-icon class="button__icon" name="add-circle-sharp"></ion-icon>Add habit
       </button>
@@ -100,35 +104,35 @@
       <ion-icon class="footer__icon" name="logo-javascript"></ion-icon>
     </footer>
 
-    <div class="modal">
+    <div class="modal" ><!-- style="display: none;" -->
       <div class="modal__register">
         <h2 class="modal__title">Habits app</h2>
         <form class="modal__form">
-            <input class="modal__input" type="text" name="email" placeholder="Email" autofocus>
-            <input class="modal__input" type="text" name="password" placeholder="Password">
-            <input class="modal__input" type="text" name="name" placeholder="Your name">
-            <button class="button button--login-register">Register</button>
-            <p class="modal__text">Already have an account?<a class="link" href="#">Login</a></p>
-            <p class="modal__text modal__text--error">&nbsp;</p>
+            <input class="modal__input modal__input--register-email" type="text" name="email" placeholder="Email" autofocus>
+            <input class="modal__input modal__input--register-password" type="text" name="password" placeholder="Password">
+            <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name">
+            <button class="button button--auth button--auth--register">Register</button>
+            <p class="modal__text">Already have an account?<a class="link link-to-login" href="#">Login</a></p>
+            <p class="modal__text modal__text--register-error"></p>
         </form>
       </div>
-      <div class="modal__login"  style="display: none;">
+      <div class="modal__login" style="display: none;"> <!-- style="display: none;" -->
         <h2 class="modal__title">Habits app</h2>
         <form class="modal__form">
-            <input class="modal__input" type="text" name="email" placeholder="Email">
-            <input class="modal__input" type="text" name="password" placeholder="Password">
+            <input class="modal__input modal__input--login-email" type="text" name="email" placeholder="Email">
+            <input class="modal__input modal__input--login-password" type="text" name="password" placeholder="Password">
             <p class="modal__text"><a class="link" href="#">Forgot password?</a></p>
-            <button class="button button--login-register">Login</button>
+            <button class="button button--auth button--auth--login">Login</button>
             <p class="modal__text">Not registered? <a class="link" href="#">Create an account</a></p>
-            <p class="modal__text modal__text--error">&nbsp;</p>
+            <p class="modal__text modal__text--login-error"></p>
         </form>
       </div>
-      <div class="modal__confirm" style="display: none;">
+      <div class="modal__confirm" style="display: none;"> <!-- style="display: none;" -->
         <h2 class="modal__title">Modal title</h2>
         <form class="modal__form">
             <input class="modal__input" type="text" name="" id="" placeholder="placeholder...">
             <button class="button button--confirm">Confirm</button>
-            <p class="modal__text modal__text--error">&nbsp;</p>
+            <p class="modal__text modal__text--error"></p>
         </form>
       </div>
     </div>

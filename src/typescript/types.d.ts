@@ -3,6 +3,12 @@ import * as enums from './enums';
 
 type MyFunction = () => void;
 
+interface AuthConfig {
+	email: string,
+	password: string,
+	username?: string
+}
+
 interface Habit {
   id: number;
 	name: string;
