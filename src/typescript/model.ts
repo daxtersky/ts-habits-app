@@ -14,27 +14,25 @@ export class Model {
     // console.log('default habits', this.habits);
   }
 
-  public validateRegister = (data: AuthConfig): void => {
-    this.isRegistered = this.getRegisterResult(data);
-    if (this.isRegistered) {
-      console.log('registered!');
-    }
-  }
+  public validateRegister = (config: AuthConfig): boolean => this.isRegistered = this.authValidator(config);
 
-  private getRegisterResult = (config: AuthConfig) => {
-    if (config.email === '' || config.password === '' || config.username === '') {
+  public validateLogin = (config: AuthConfig): boolean => this.isLogged = this.authValidator(config);
+
+  private authValidator(config: AuthConfig): boolean {
+    const emailValidator = /\S+@\S+\.\S+/;
+    const configInputs = Object.keys(config).map(key => config[key]);
+
+    if (!emailValidator.test(configInputs[0])) { // email
+      return false;
+    }
+    if (configInputs[1].length < 4 || configInputs[1].length > 12) { // password
+      return false;
+    }
+    if (configInputs[2] && (configInputs[2].length < 4 || configInputs[2].length > 9)) { // username, only for registering
       return false;
     }
     return true;
   }
-
-  // private validateLogin = (config: AuthConfig) => {
-  //   console.log('validateLogin', config);
-  //   if (config.email === '' || config.password === '') {
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {

@@ -105,22 +105,22 @@
     </footer>
 
     <div class="modal" ><!-- style="display: none;" -->
-      <div class="modal__register">
+      <div class="modal__register"  style="display: none;">
         <h2 class="modal__title">Habits app</h2>
         <form class="modal__form">
-            <input class="modal__input modal__input--register-email" type="text" name="email" placeholder="Email" autofocus>
-            <input class="modal__input modal__input--register-password" type="text" name="password" placeholder="Password">
-            <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name">
+            <input class="modal__input modal__input--register-email" type="text" name="email" placeholder="Email" autofocus required>
+            <input class="modal__input modal__input--register-password" type="text" name="password" placeholder="Password" required>
+            <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name" required>
             <button class="button button--auth button--auth--register">Register</button>
             <p class="modal__text">Already have an account?<a class="link link-to-login" href="#">Login</a></p>
             <p class="modal__text modal__text--register-error"></p>
         </form>
       </div>
-      <div class="modal__login" style="display: none;"> <!-- style="display: none;" -->
+      <div class="modal__login" > <!-- style="display: none;" -->
         <h2 class="modal__title">Habits app</h2>
         <form class="modal__form">
-            <input class="modal__input modal__input--login-email" type="text" name="email" placeholder="Email">
-            <input class="modal__input modal__input--login-password" type="text" name="password" placeholder="Password">
+            <input class="modal__input modal__input--login-email" type="text" name="email" placeholder="Email" required>
+            <input class="modal__input modal__input--login-password" type="text" name="password" placeholder="Password" required>
             <p class="modal__text"><a class="link" href="#">Forgot password?</a></p>
             <button class="button button--auth button--auth--login">Login</button>
             <p class="modal__text">Not registered? <a class="link" href="#">Create an account</a></p>

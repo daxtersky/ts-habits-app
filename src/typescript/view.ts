@@ -11,7 +11,8 @@ export class View {
   private inputLoginPassword = <HTMLInputElement>this.getElement('.modal__input--login-password');
   private buttonRegister = <HTMLButtonElement>this.getElement('.button--auth--register');
   private buttonLogin = <HTMLButtonElement>this.getElement('.button--auth--login');
-  private errorMessage = <HTMLParagraphElement>this.getElement('.modal__text--register-error');
+  private registerErrorMessage = <HTMLParagraphElement>this.getElement('.modal__text--register-error');
+  private loginErrorMessage = <HTMLParagraphElement>this.getElement('.modal__text--login-error');
   // private linkToLogin = <HTMLAnchorElement>this.getElement('.link-to-login');
 
   get userRegisterMail() { return this.inputRegisterEmail.value }
@@ -51,7 +52,11 @@ export class View {
   }
 
   public showRegisterResult(isRegistered: boolean): void {
-    this.errorMessage.innerText = isRegistered ? '' : 'Registration error!';
+    this.registerErrorMessage.innerText = isRegistered ? '' : 'Error! You need to put an email, 4-12 character password and 4-12 character username and  ';
+  }
+
+  public showLoginResult(isLogged: boolean): void {
+    this.loginErrorMessage.innerText = isLogged ? '' : 'Login error!';
   }
 
 }
