@@ -1,4 +1,3 @@
-import '../scss/main.scss';
 import { AuthConfig } from './types';
 import { DOMElements } from './dom-elems';
 

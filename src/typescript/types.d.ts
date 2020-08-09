@@ -1,6 +1,6 @@
 import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-declaration-files/
 
-type MyFunction = () => void;
+// type MyFunction = () => void;
 
 interface AuthConfig {
 	email: string,
