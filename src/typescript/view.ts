@@ -32,6 +32,7 @@ export class View {
 
   public bindRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonRegister.addEventListener('click', () => {
+      console.log('bind click...', );
       handler({
         email: this.userRegisterMail,
         password: this.userRegisterPassword,
@@ -60,7 +61,6 @@ export class View {
       DOMElements.loginErrorMessage.innerText = 'Login error!';
     } else {
       DOMElements.loginErrorMessage.innerText = '';
-      console.log('TODO login!',);
       DOMElements.welcomePage.style.display = 'none';
       DOMElements.habitsPage.style.display = 'grid';
       DOMElements.modalWrapper.style.display = 'none';

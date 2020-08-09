@@ -1,4 +1,4 @@
-import { ColorTheme, HabitType } from './enums';
+import { HabitType } from './enums';
 import { Habit, AuthConfig } from './types';
 
 export class Model {
