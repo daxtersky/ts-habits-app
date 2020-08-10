@@ -39,7 +39,7 @@ $light-warning: #f00;
   }
   &--auth {
     margin: .4rem 0;
-    width: 100px;
+    width: 120px;
     font-size: .8rem;
     text-transform: uppercase;
     @include box(.5rem, $light-theme-light);
@@ -73,6 +73,19 @@ $light-warning: #f00;
   width: 300px;
   @include box(1rem, $light-theme-light);
 
+  &--register {
+    display: none;
+  }
+  &--login {
+    display: none;
+  }
+  &--confirm {
+    display: none;
+  }
+  &--active {
+    display: initial;
+  }
+
   &__text {
     margin: .4rem 0;
 
@@ -80,15 +93,6 @@ $light-warning: #f00;
     &--register-error, &--login-error {
       color: $light-warning;
     }
-
-  }
-  // &__register {
-  // }
-  &__login {
-    display: none; // not logged
-  }
-  &__confirm {
-    display: none; // not logged
 
   }
   &__title {

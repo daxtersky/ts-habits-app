@@ -15,6 +15,6 @@ exports.randomNumber = functions.https.onRequest((request, response) => {
 });
 
 exports.sayHello = functions.https.onCall((data, context) => {
-  functions.logger.info(`SAYHELLO LOG - DATA: ${data} CONTEXT ${context}`, { structuredData: true });
-  return 'heloooo!!!!!!! made it!!!';
+  functions.logger.info(`SAYHELLO LOG - DATA: ${data.data} CONTEXT ${context.auth} / ${context.rawRequest}`, { structuredData: true });
+  return `data ${data}, context ${context}`;
 });

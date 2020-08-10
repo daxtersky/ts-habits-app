@@ -2,11 +2,9 @@ const getElement = (selector: string): HTMLElement => document.querySelector(sel
 
 export const DOMElements = {
   // WELCOME PAGE
-  modalWrapper: <HTMLDivElement>getElement('.modal'),
-
-  modalRegister: <HTMLDivElement>getElement('.modal__register'),
+  modalRegister: <HTMLDivElement>getElement('.modal--register'),
   navigateToLogin: <HTMLDivElement>getElement('.link-to-login'),
-  modalLogin: <HTMLDivElement>getElement('.modal__login'),
+  modalLogin: <HTMLDivElement>getElement('.modal--login'),
   navigateToRegister: <HTMLDivElement>getElement('.link-to-register'),
 
   welcomePage: <HTMLElement>getElement('.welcome-page'),

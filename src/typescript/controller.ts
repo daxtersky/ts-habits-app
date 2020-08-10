@@ -38,12 +38,6 @@ class Controller {
 
   public bindRegisterResult = (isRegistered: boolean): void => {
     this.view.showRegisterResult(isRegistered);
-    console.log('register click!', );
-    const sayHello = firebase.functions().httpsCallable('sayHello');
-    sayHello().then(result => {
-      console.log('sayhello then', result);
-      return result.data;
-    })
   }
   public bindLoginResult = (isLogged: boolean): void => {
     this.view.showLoginResult(isLogged);
@@ -52,6 +46,14 @@ class Controller {
   private handleRegister = (config: AuthConfig): void => {
     this.model.validateRegister(config);
     this.bindRegisterResult(this.model.isRegistered);
+    //
+    console.log('register click!', config);
+    const sayHello = firebase.functions().httpsCallable('sayHello');
+    sayHello(config).then(result => {
+      console.log('sayHello res', config);
+      return result;
+    })
+
   }
   private handleLogin = (config: AuthConfig): void => {
     this.model.validateLogin(config);

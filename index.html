@@ -19,7 +19,7 @@
 <body>
 
   <main class="wrapper">
-    <section class="welcome-page"></section>
+    <section class="welcome-page welcome-page--active"></section>
     <section class="habits-page">
       <header class="header">
         <h2 class="header__logo">
@@ -103,41 +103,39 @@
       </footer>
     </section>
 
-    <div class="modal">
-      <div class="modal__register">
-        <h2 class="modal__title">Habits app</h2>
-        <form class="modal__form">
-          <input class="modal__input modal__input--register-email" type="text" name="email" placeholder="Email"
-            autofocus required>
-          <input class="modal__input modal__input--register-password" type="password" name="password" placeholder="Password"
-            required>
-          <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name"
-            required>
-          <button class="button button--auth button--auth--register">Register</button>
-          <p class="modal__text">Already have an account?<a class="link link-to-login" href="#">Login</a></p>
-          <p class="modal__text modal__text--register-error"></p>
-        </form>
-      </div>
-      <div class="modal__login">
-        <h2 class="modal__title">Habits app</h2>
-        <form class="modal__form">
-          <input class="modal__input modal__input--login-email" type="text" name="email" placeholder="Email" required>
-          <input class="modal__input modal__input--login-password" type="password" name="password" placeholder="Password"
-            required>
-          <p class="modal__text"><a class="link" href="#">Forgot password?</a></p>
-          <button class="button button--auth button--auth--login">Login</button>
-          <p class="modal__text">Not registered? <a class="link link-to-register" href="#">Create an account</a></p>
-          <p class="modal__text modal__text--login-error"></p>
-        </form>
-      </div>
-      <div class="modal__confirm">
-        <h2 class="modal__title">Modal title</h2>
-        <form class="modal__form">
-          <input class="modal__input" type="text" name="" id="" placeholder="placeholder...">
-          <button class="button button--confirm">Confirm</button>
-          <p class="modal__text modal__text--error"></p>
-        </form>
-      </div>
+    <div class="modal modal--register modal--active">
+      <h2 class="modal__title">Habits app</h2>
+      <form class="modal__form">
+        <input class="modal__input modal__input--register-email" type="text" name="email" placeholder="Email" autofocus
+          required>
+        <input class="modal__input modal__input--register-password" type="password" name="password"
+          placeholder="Password" required>
+        <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name"
+          required>
+        <button class="button button--auth button--auth--register">Register</button>
+        <p class="modal__text">Already have an account?<a class="link link-to-login" href="#">Login</a></p>
+        <p class="modal__text modal__text--register-error"></p>
+      </form>
+    </div>
+    <div class="modal modal--login">
+      <h2 class="modal__title">Habits app</h2>
+      <form class="modal__form">
+        <input class="modal__input modal__input--login-email" type="text" name="email" placeholder="Email" required>
+        <input class="modal__input modal__input--login-password" type="password" name="password" placeholder="Password"
+          required>
+        <p class="modal__text"><a class="link" href="#">Forgot password?</a></p>
+        <button class="button button--auth button--auth--login">Login</button>
+        <p class="modal__text">Not registered? <a class="link link-to-register" href="#">Create an account</a></p>
+        <p class="modal__text modal__text--login-error"></p>
+      </form>
+    </div>
+    <div class="modal modal--confirm">
+      <h2 class="modal__title">Modal title</h2>
+      <form class="modal__form">
+        <input class="modal__input" type="text" name="" id="" placeholder="placeholder...">
+        <button class="button button--confirm">Confirm</button>
+        <p class="modal__text modal__text--error"></p>
+      </form>
     </div>
 
   </main>

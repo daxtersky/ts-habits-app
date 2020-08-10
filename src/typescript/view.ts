@@ -18,21 +18,20 @@ export class View {
 
   public bindNavigateToLoginModalClick = () => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
-      DOMElements.modalRegister.style.display = 'none';
-      DOMElements.modalLogin.style.display = 'initial';
+      DOMElements.modalRegister.classList.remove('modal--active');
+      DOMElements.modalLogin.classList.add('modal--active');
     })
   }
 
   public bindNavigateToRegisterModalClick = () => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
-      DOMElements.modalRegister.style.display = 'initial';
-      DOMElements.modalLogin.style.display = 'none';
+      DOMElements.modalRegister.classList.add('modal--active');
+      DOMElements.modalLogin.classList.remove('modal--active');
     })
   }
 
   public bindRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonRegister.addEventListener('click', () => {
-      console.log('bind click...', );
       handler({
         email: this.userRegisterMail,
         password: this.userRegisterPassword,
@@ -61,11 +60,11 @@ export class View {
       DOMElements.loginErrorMessage.innerText = 'Login error!';
     } else {
       DOMElements.loginErrorMessage.innerText = '';
-      DOMElements.welcomePage.style.display = 'none';
-      DOMElements.habitsPage.style.display = 'grid';
-      DOMElements.modalWrapper.style.display = 'none';
-      DOMElements.modalRegister.style.display = 'none';
-      DOMElements.modalLogin.style.display = 'none';
+      DOMElements.welcomePage.classList.remove('welcome-page--active')
+      DOMElements.habitsPage.classList.add('habits-page--active');
+      // DOMElements.welcomePage.style.display = 'none';
+      // DOMElements.habitsPage.style.display = 'grid';
+      DOMElements.modalLogin.classList.remove('modal--active');
     }
   }
 
@@ -75,12 +74,14 @@ export class View {
       handler();
     })
   }
+
   public showLogoutResult(isLogged: boolean): void {
     if (!isLogged) {
-      DOMElements.welcomePage.style.display = 'grid';
-      DOMElements.habitsPage.style.display = 'none';
-      DOMElements.modalWrapper.style.display = 'initial';
-      DOMElements.modalLogin.style.display = 'initial';
+      DOMElements.welcomePage.classList.add('welcome-page--active')
+      DOMElements.habitsPage.classList.remove('habits-page--active');
+      // DOMElements.welcomePage.style.display = 'grid';
+      // DOMElements.habitsPage.style.display = 'none';
+      DOMElements.modalLogin.classList.add('modal--active');
     }
   }
 

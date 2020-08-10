@@ -2,7 +2,7 @@ import { HabitType } from './enums';
 import { Habit, AuthConfig } from './types';
 
 export class Model {
-  private habits: Habit[] = [];
+  private habits: Habit[];
   isRegistered = false;
   isLogged = false;
 

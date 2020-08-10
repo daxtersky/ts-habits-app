@@ -3,14 +3,14 @@
   .wrapper {
     height: 100%;
     width: 100%;
-    padding: .4rem;
 
     .header__username {
       font-size: 1rem;
     }
 
     .habits {
-        padding: 0;
+        padding-left: 0;
+        padding-right: 1rem;
 
         .habits-wrapper {
           &__title {
@@ -29,11 +29,11 @@
         .icon-wrapper__text {
           display: none;
         }
-        &:active, &:focus, // TODO check on real mobile
+        &:active, &:focus,
         &:hover  {
           position: absolute;
           height: 100%;
-          width: 200px;
+          width: 170px;
 
           .icon-wrapper__text {
             display: block;
@@ -46,8 +46,8 @@
     }
 
     .button {
-      right: 20px;
-      bottom: 70px;
+      right: 8px;
+      bottom: 68px;
       font-size: 1.1rem;
     }
 

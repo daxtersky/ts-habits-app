@@ -19,10 +19,9 @@ body {
 }
 
 .wrapper {
-  position: relative;
   height: calc(100% - 2rem);
   width: 1000px;
-  @include box(1rem, $light-theme-bright);
+  @include box(0rem, $light-theme-background);
 
   .welcome-page {
     height: 100%;
@@ -32,13 +31,24 @@ body {
     background-size: contain;
     background-position: center;
     filter: blur(2px);
+    display: none;
+
+    &--active {
+      display: grid;
+    }
   }
 
   .habits-page {
+    position: relative;
+
     height: 100%;
     overflow: hidden;
-    display: grid;
-    display: none; // not logged
+    display: none;
+
+    &--active {
+      display: grid;
+    }
+
     grid-template-columns: minmax(55px, auto) 1fr;
     grid-template-rows: auto 1fr auto;
     gap: .5rem;
