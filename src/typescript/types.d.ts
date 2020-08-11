@@ -1,5 +1,15 @@
 import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-declaration-files/
 
+interface FirebaseConfig {
+	apiKey: string,
+	authDomain: string,
+	databaseURL: string,
+	projectId: string,
+	storageBucket: string,
+	messagingSenderId: string,
+	appId: string
+}
+
 // type MyFunction = () => void;
 
 interface AuthConfig {

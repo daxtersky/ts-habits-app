@@ -62,8 +62,6 @@ export class View {
       DOMElements.loginErrorMessage.innerText = '';
       DOMElements.welcomePage.classList.remove('welcome-page--active')
       DOMElements.habitsPage.classList.add('habits-page--active');
-      // DOMElements.welcomePage.style.display = 'none';
-      // DOMElements.habitsPage.style.display = 'grid';
       DOMElements.modalLogin.classList.remove('modal--active');
     }
   }
@@ -79,8 +77,6 @@ export class View {
     if (!isLogged) {
       DOMElements.welcomePage.classList.add('welcome-page--active')
       DOMElements.habitsPage.classList.remove('habits-page--active');
-      // DOMElements.welcomePage.style.display = 'grid';
-      // DOMElements.habitsPage.style.display = 'none';
       DOMElements.modalLogin.classList.add('modal--active');
     }
   }

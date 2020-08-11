@@ -13,18 +13,7 @@ document.addEventListener('DOMContentLoaded', (): Controller => {
 
 class Controller {
   constructor(public view: View, public model: Model) {
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyAekSW2R8QuGPeiQret4T7zAgBYoBNGWcg",
-      authDomain: "habits-cloud-functions-9dccc.firebaseapp.com",
-      databaseURL: "https://habits-cloud-functions-9dccc.firebaseio.com",
-      projectId: "habits-cloud-functions-9dccc",
-      storageBucket: "habits-cloud-functions-9dccc.appspot.com",
-      messagingSenderId: "282926052128",
-      appId: "1:282926052128:web:8044186b157d0f7952dd45"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(this.model.firebaseConfig);
     // WELCOME PAGE
     this.view.bindNavigateToLoginModalClick();
     this.view.bindNavigateToRegisterModalClick();
@@ -45,15 +34,8 @@ class Controller {
 
   private handleRegister = (config: AuthConfig): void => {
     this.model.validateRegister(config);
+    this.model.onHandleCallableFunction(config, firebase.functions());
     this.bindRegisterResult(this.model.isRegistered);
-    //
-    console.log('register click!', config);
-    const sayHello = firebase.functions().httpsCallable('sayHello');
-    sayHello(config).then(result => {
-      console.log('sayHello res', config);
-      return result;
-    })
-
   }
   private handleLogin = (config: AuthConfig): void => {
     this.model.validateLogin(config);
