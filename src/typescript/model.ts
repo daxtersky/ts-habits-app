@@ -24,18 +24,37 @@ export class Model {
 
   // WELCOME PAGE
 
-  public validateRegister = (config: AuthConfig): boolean => this.isRegistered = this.authValidator(config);
-
-  public validateLogin = (config: AuthConfig): boolean => this.isLogged = this.authValidator(config);
-
-  public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
-    console.log('register click!', config);
-    const sayHello = functions.httpsCallable('sayHello');
-    sayHello(config).then(result => {
-      console.log('sayHello res', config);
-      return result;
-    })
+  // public validateRegister = (config: AuthConfig): boolean => this.isRegistered = this.authValidator(config);
+  public onRegisterUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
+    fAuth.createUserWithEmailAndPassword(config.email, config.password)
+      .then((user) => {
+        console.log('registered', user);
+      })
+      .catch((err) => {
+        console.log('reg err', err);
+      })
   }
+
+  // public validateLogin = (config: AuthConfig): boolean => this.isLogged = this.authValidator(config);
+  public onLoginUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
+    fAuth.signInWithEmailAndPassword(config.email, config.password)
+      .then((user) => {
+        console.log('logged', user);
+
+      })
+      .catch((err) => {
+        console.log('log err', err);
+      })
+  }
+
+  // public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
+  //   console.log('register click!', config);
+  //   const sayHello = functions.httpsCallable('sayHello');
+  //   sayHello(config).then(result => {
+  //     console.log('sayHello res', config);
+  //     return result;
+  //   })
+  // }
 
   private authValidator = (config: AuthConfig): boolean => {
     const emailValidator = /\S+@\S+\.\S+/;
@@ -55,7 +74,17 @@ export class Model {
 
   // HABITS PAGE
 
-  public onLogout = (): boolean => this.isLogged = false;
+  // public onLogout = (): boolean => this.isLogged = false;
+  public onLogoutUser = (fAuth) => {
+    fAuth.signOut()
+      .then(user => {
+        console.log('logout user', user);
+      })
+      .catch(err => {
+        console.log('logout err', err);
+      })
+  };
+
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {
