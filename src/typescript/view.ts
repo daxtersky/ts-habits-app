@@ -1,4 +1,4 @@
-import { AuthConfig } from './types';
+import { AuthConfig, UserState } from './types';
 import { DOMElements } from './dom-elems';
 
 export class View {
@@ -15,14 +15,12 @@ export class View {
   }
 
   // WELCOME PAGE
-
   public bindNavigateToLoginModalClick = () => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
   }
-
   public bindNavigateToRegisterModalClick = () => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
@@ -39,7 +37,6 @@ export class View {
       })
     })
   }
-
   public bindLoginClick = (handler: any): void => {
     DOMElements.buttonLogin.addEventListener('click', () => {
       handler({
@@ -49,20 +46,39 @@ export class View {
     })
   }
 
-  public showRegisterResult(isRegistered: boolean): void {
-    DOMElements.registerErrorMessage.innerText = isRegistered
-      ? ''
-      : 'Error! You need to put a correct email, 4-12 character password and 4-12 character username! :)';
+  public navigateToLoginPage = (): void => {
+    console.log('navigateToLoginPage', );
+    DOMElements.welcomePage.classList.add('welcome-page--active')
+    DOMElements.habitsPage.classList.remove('habits-page--active');
+    DOMElements.modalLogin.classList.add('modal--active');
+  }
+  public navigateToHabitsPage = (): void => {
+    DOMElements.welcomePage.classList.remove('welcome-page--active')
+    DOMElements.habitsPage.classList.add('habits-page--active');
+    DOMElements.modalRegister.classList.remove('modal--active');
+    DOMElements.modalLogin.classList.remove('modal--active');
   }
 
-  public showLoginResult(isLogged: boolean): void {
-    if (!isLogged) {
-      DOMElements.loginErrorMessage.innerText = 'Login error!';
-    } else {
-      DOMElements.loginErrorMessage.innerText = '';
-      DOMElements.welcomePage.classList.remove('welcome-page--active')
-      DOMElements.habitsPage.classList.add('habits-page--active');
-      DOMElements.modalLogin.classList.remove('modal--active');
+  public showRegisterResult(userState: UserState): void {
+    if(userState) {
+      console.log('showRegisterResult', userState);
+      if (userState.isLogged) {
+        this.navigateToHabitsPage()
+      };
+      if (userState.errorMessage) {
+        DOMElements.registerErrorMessage.innerText = userState.errorMessage;
+        console.log('?', DOMElements.registerErrorMessage.innerText);
+      }
+    }
+  }
+
+  public showLoginResult(userState: UserState): void {
+    console.log('showLoginResult', userState);
+    if (userState?.isLogged) {
+      this.navigateToHabitsPage()
+    }
+    if (userState?.errorMessage) {
+      DOMElements.loginErrorMessage.innerText = userState.errorMessage;
     }
   }
 
@@ -71,14 +87,6 @@ export class View {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();
     })
-  }
-
-  public showLogoutResult(isLogged: boolean): void {
-    if (!isLogged) {
-      DOMElements.welcomePage.classList.add('welcome-page--active')
-      DOMElements.habitsPage.classList.remove('habits-page--active');
-      DOMElements.modalLogin.classList.add('modal--active');
-    }
   }
 
 }

@@ -1,5 +1,5 @@
 import { HabitType } from './enums';
-import { FirebaseConfig, Habit, AuthConfig } from './types';
+import { FirebaseConfig, UserState, Habit, AuthConfig } from './types';
 
 export class Model {
   private habits: Habit[];
@@ -14,38 +14,60 @@ export class Model {
     messagingSenderId: "282926052128",
     appId: "1:282926052128:web:8044186b157d0f7952dd45"
   };
+  userState: UserState;
 
   constructor() {
-    this.habits = [
-      { id: 1, name: 'Brush your teeth', order: 1, habitType: HabitType.Day, description: 'Brush your teeth twice everyday!', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day) },
-      { id: 2, name: 'Talk to a stranger', order: 2, habitType: HabitType.Week, description: 'Meet new people!', activiTyActual: 0, activiTyGoal: 1, habitColor: this.getDefaultColor(HabitType.Week) },
-    ];
   }
 
   // WELCOME PAGE
 
-  // public validateRegister = (config: AuthConfig): boolean => this.isRegistered = this.authValidator(config);
+  // public validateRegister = (config: AuthConfig): boolean =>
+  // this.isRegistered = this.authValidator(config);
   public onRegisterUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
     fAuth.createUserWithEmailAndPassword(config.email, config.password)
       .then((user) => {
-        console.log('registered', user);
+        this.userState = {
+          errorMessage: '',
+          isLogged: true,
+        }
       })
       .catch((err) => {
-        console.log('reg err', err);
+        this.userState = {
+          errorMessage: err.message,
+          isLogged: false,
+        }
+        console.log('1 err', this.userState);
       })
   }
 
-  // public validateLogin = (config: AuthConfig): boolean => this.isLogged = this.authValidator(config);
+  // public validateLogin = (config: AuthConfig): boolean =>
+  // this.isLogged = this.authValidator(config);
   public onLoginUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
     fAuth.signInWithEmailAndPassword(config.email, config.password)
       .then((user) => {
-        console.log('logged', user);
-
+        this.userState = {
+          isLogged: true,
+          errorMessage: ''
+        }
       })
       .catch((err) => {
-        console.log('log err', err);
+        this.userState = {
+          isLogged: false,
+          errorMessage: err.message
+        }
+        console.log('1 err', this.userState);
       })
   }
+
+  // HABITS PAGE
+  public onLogoutUser = (fAuth) => {
+    fAuth.signOut()
+      .then(user => {
+        console.log('logout user', user);
+        // return this.isLogged = false;
+      })
+      .catch(err => console.log('logout err', err))
+  };
 
   // public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
   //   console.log('register click!', config);
@@ -55,36 +77,6 @@ export class Model {
   //     return result;
   //   })
   // }
-
-  private authValidator = (config: AuthConfig): boolean => {
-    const emailValidator = /\S+@\S+\.\S+/;
-    const configInputs = Object.keys(config).map(key => config[key]);
-
-    if (!emailValidator.test(configInputs[0])) { // email
-      return false;
-    }
-    if (configInputs[1].length < 4 || configInputs[1].length > 12) { // password
-      return false;
-    }
-    if (configInputs[2] && (configInputs[2].length < 4 || configInputs[2].length > 9)) { // username, only for registering
-      return false;
-    }
-    return true;
-  }
-
-  // HABITS PAGE
-
-  // public onLogout = (): boolean => this.isLogged = false;
-  public onLogoutUser = (fAuth) => {
-    fAuth.signOut()
-      .then(user => {
-        console.log('logout user', user);
-      })
-      .catch(err => {
-        console.log('logout err', err);
-      })
-  };
-
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {

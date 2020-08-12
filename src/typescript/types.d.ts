@@ -18,6 +18,11 @@ interface AuthConfig {
 	username?: string
 }
 
+interface UserState {
+	errorMessage: string,
+	isLogged: boolean,
+}
+
 interface Habit {
   id: number;
 	name: string;
