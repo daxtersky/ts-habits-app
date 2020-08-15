@@ -1,5 +1,11 @@
 import { HabitType } from './enums';
-import { FirebaseConfig, UserState, Habit, AuthConfig } from './types';
+import { FirebaseConfig, UserState, Habit, AuthConfig, UserStateCallback, ErrorMessageCallback } from './types';
+
+import firebase from 'firebase/app';
+import 'firebase/functions';
+import 'firebase/auth';
+// import 'firebase/database'; // If using Firebase database
+// import 'firebase/storage'; // If using Firebase storage
 
 export class Model {
   private habits: Habit[];
@@ -18,49 +24,54 @@ export class Model {
     errorMessage: '',
     isLogged: false,
   }
-  handleAuthRegisterProcessChanged;
-  handleAuthProcessChanged;
+  handleRegisterError: ErrorMessageCallback;
+  handleLoginError: ErrorMessageCallback;
+  userAuthStateNotLogged: UserStateCallback;
+  userAuthStateLogged: UserStateCallback;
 
-  // constructor() { }
-
-  public bindAuthRegisterProcessChanged(callback) {
-    this.handleAuthRegisterProcessChanged = callback;
+  constructor() {
+    firebase.initializeApp(this.firebaseConfig);
+    firebase.auth().onAuthStateChanged(user => this.userAuthStateChanged(user));
   }
-  public bindAuthProcessChanged(callback) {
-    this.handleAuthProcessChanged = callback;
-  }
-  // WELCOME PAGE
 
-  public updateUserLoginState = (user: firebase.User): UserState => user
-    ? this.userState = { ...this.userState, isLogged: true }
-    : this.userState = { ...this.userState, isLogged: false }
+  public bindRegisterError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleRegisterError = callback;
+  public bindLoginError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleLoginError = callback;
+  public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
+  public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
 
-  public onRegisterUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
-    fAuth.createUserWithEmailAndPassword(config.email, config.password)
+  public onRegisterUser = (config: AuthConfig): void => {
+    firebase.auth()
+      .createUserWithEmailAndPassword(config.email, config.password)
       .catch((err) => {
         this.userState = { ...this.userState, errorMessage: err.message };
-        this.handleAuthRegisterProcessChanged(this.userState);
+        this.handleRegisterError(this.userState.errorMessage);
       })
   }
-
-  public onLoginUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
-    fAuth.signInWithEmailAndPassword(config.email, config.password)
+  public onLoginUser = (config: AuthConfig): void => {
+    firebase.auth()
+      .signInWithEmailAndPassword(config.email, config.password)
       .catch((err) => {
         this.userState = { ...this.userState, errorMessage: err.message };
-        this.handleAuthProcessChanged(this.userState);
+        this.handleLoginError(this.userState.errorMessage);
       })
   }
+  public onLogoutUser = (): void => {
+    firebase.auth().signOut();
+  }
 
+  private userAuthStateChanged(user: firebase.User): void {
+    if (user) {
+      this.userState = { ...this.userState, isLogged: true };
+      this.userAuthStateLogged(this.userState);
+      console.log('logged!', this.userState);
+    } else {
+      this.userState = { ...this.userState, isLogged: false };
+      this.userAuthStateNotLogged(this.userState);
+      console.log('not logged!', this.userState);
+    }
+  }
 
-  // HABITS PAGE
-  public onLogoutUser = (fAuth: firebase.auth.Auth): void => {
-    fAuth.signOut()
-      .then(user => console.log('logout user', user))
-      .catch(err => {
-        alert('Sign out error!');
-        console.log('logout err', err);
-      })
-  };
+  ////////////////////
 
   /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
        console.log('register click!', config);

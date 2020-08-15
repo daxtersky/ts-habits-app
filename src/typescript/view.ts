@@ -1,8 +1,7 @@
-import { AuthConfig, UserState } from './types';
+import { AuthConfig } from './types';
 import { DOMElements } from './dom-elems';
 
 export class View {
-
   get userRegisterMail() { return DOMElements.inputRegisterEmail.value }
   get userRegisterPassword() { return DOMElements.inputRegisterPassword.value }
   get userRegisterUsername() { return DOMElements.inputRegisterUsername.value }
@@ -15,26 +14,24 @@ export class View {
   }
 
   // WELCOME PAGE
-  public bindNavigateToLoginModalClick = () => {
+  public bindNavigateToLoginModalClick = (): void => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
   }
-  public bindNavigateToRegisterModalClick = () => {
+  public bindNavigateToRegisterModalClick = (): void => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
       DOMElements.modalLogin.classList.remove('modal--active');
     })
   }
 
-  public displayRegisterUserState = (userState) => {
-    console.log('VIEW userState:', userState);
-    DOMElements.registerErrorMessage.innerText = userState.errorMessage;
+  public displayRegisterUserState = (errorMessage: string): void => {
+    DOMElements.registerErrorMessage.innerText = errorMessage;
   }
-  public displayUserState = (userState) => {
-    console.log('VIEW userState:', userState);
-    DOMElements.loginErrorMessage.innerText = userState.errorMessage;
+  public displayUserState = (errorMessage: string): void => {
+    DOMElements.loginErrorMessage.innerText = errorMessage;
   }
 
   public listenerRegisterClick = (handler: (config: AuthConfig) => void): void => {
@@ -67,31 +64,8 @@ export class View {
     DOMElements.modalLogin.classList.remove('modal--active');
   }
 
-  // public showRegisterResult(userState: UserState): void {
-  //   if(userState) {
-  //     console.log('showRegisterResult', userState);
-  //     if (userState.isLogged) {
-  //       this.navigateToHabitsPage()
-  //     };
-  //     if (userState.errorMessage) {
-  //       DOMElements.registerErrorMessage.innerText = userState.errorMessage;
-  //       console.log('?', DOMElements.registerErrorMessage.innerText);
-  //     }
-  //   }
-  // }
-
-  // public showLoginResult(userState: UserState): void {
-    // console.log('showLoginResult', userState);
-    // if (userState?.isLogged) {
-    //   this.navigateToHabitsPage()
-    // }
-    // if (userState?.errorMessage) {
-    //   DOMElements.loginErrorMessage.innerText = userState.errorMessage;
-    // }
-  // }
-
   // HABITS PAGE
-  public bindNavigateLogOutClick = (handler: any) => {
+  public bindNavigateLogOutClick = (handler: any): void => {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();
     })
