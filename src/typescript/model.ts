@@ -42,36 +42,39 @@ export class Model {
   public onRegisterUser = (config: AuthConfig): void => {
     firebase.auth()
       .createUserWithEmailAndPassword(config.email, config.password)
+      .then(() => this.setUsername(config))
       .catch((err) => {
-        this.userState = { ...this.userState, errorMessage: err.message };
-        this.handleRegisterError(this.userState.errorMessage);
-      })
+  this.userState = { ...this.userState, errorMessage: err.message };
+  this.handleRegisterError(this.userState.errorMessage);
+})
   }
   public onLoginUser = (config: AuthConfig): void => {
-    firebase.auth()
-      .signInWithEmailAndPassword(config.email, config.password)
-      .catch((err) => {
-        this.userState = { ...this.userState, errorMessage: err.message };
-        this.handleLoginError(this.userState.errorMessage);
-      })
-  }
+  firebase.auth()
+    .signInWithEmailAndPassword(config.email, config.password)
+    .catch((err) => {
+      this.userState = { ...this.userState, errorMessage: err.message };
+      this.handleLoginError(this.userState.errorMessage);
+    })
+}
   public onLogoutUser = (): void => {
-    firebase.auth().signOut();
-  }
+  firebase.auth().signOut();
+}
 
   private userAuthStateChanged(user: firebase.User): void {
-    if (user) {
-      this.userState = { ...this.userState, isLogged: true };
-      this.userAuthStateLogged(this.userState);
-      console.log('logged!', this.userState);
-    } else {
-      this.userState = { ...this.userState, isLogged: false };
-      this.userAuthStateNotLogged(this.userState);
-      console.log('not logged!', this.userState);
-    }
+  if(user) {
+    this.userState = { ...this.userState, isLogged: true };
+    this.userAuthStateLogged(this.userState);
+    console.log('logged!', this.userState);
+  } else {
+    this.userState = { ...this.userState, isLogged: false };
+    this.userAuthStateNotLogged(this.userState);
+    console.log('not logged!', this.userState);
   }
+}
 
-  ////////////////////
+private setUsername = (config: AuthConfig): string => this.userState.username = config.username ? config.username : config.email
+
+////////////////////
 
   /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
        console.log('register click!', config);
@@ -83,12 +86,12 @@ export class Model {
   } */
 
   private getDefaultColor = (habitType: HabitType): string => {
-    switch (habitType) {
-      case HabitType.Day: return 'green';
-      case HabitType.Week: return 'pink';
-      case HabitType.Month: return 'blue';
-      case HabitType.Year: return 'yellow';
-    }
+  switch (habitType) {
+    case HabitType.Day: return 'green';
+    case HabitType.Week: return 'pink';
+    case HabitType.Month: return 'blue';
+    case HabitType.Year: return 'yellow';
   }
+}
 
 }

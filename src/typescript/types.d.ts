@@ -22,6 +22,7 @@ interface AuthConfig {
 }
 
 interface UserState {
+	username?: string;
 	errorMessage: string,
 	isLogged: boolean,
 }

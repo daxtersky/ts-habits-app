@@ -24,10 +24,10 @@
       <header class="header">
         <h2 class="header__logo">
           <ion-icon class="header__icon" name="bulb"></ion-icon>
-          <span class="header__username">Habits App</span>
+          <span>Habits App</span>
         </h2>
         <div class="header__user">
-          <span class="header__username">Miko</span>
+          <span class="header__welcome">Welcome, </span><strong class="header__username"></strong>
           <ion-icon class="header__icon" name="person-circle-sharp"></ion-icon>
         </div>
       </header>
@@ -110,8 +110,7 @@
           required>
         <input class="modal__input modal__input--register-password" type="password" name="password"
           placeholder="Password" required>
-        <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name"
-          required>
+        <input class="modal__input modal__input--register-name" type="text" name="name" placeholder="Your name">
         <button class="button button--auth button--auth--register">Register</button>
         <p class="modal__text">Already have an account?<a class="link link-to-login" href="#">Login</a></p>
         <p class="modal__text modal__text--register-error"></p>

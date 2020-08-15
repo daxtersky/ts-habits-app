@@ -57,11 +57,12 @@ export class View {
     DOMElements.habitsPage.classList.remove('habits-page--active');
     DOMElements.modalLogin.classList.add('modal--active');
   }
-  public navigateToHabitsPage = (): void => {
+  public navigateToHabitsPage = (username: string): void => {
     DOMElements.welcomePage.classList.remove('welcome-page--active')
     DOMElements.habitsPage.classList.add('habits-page--active');
     DOMElements.modalRegister.classList.remove('modal--active');
     DOMElements.modalLogin.classList.remove('modal--active');
+    DOMElements.username.innerText = username;
   }
 
   // HABITS PAGE

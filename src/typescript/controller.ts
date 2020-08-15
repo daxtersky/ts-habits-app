@@ -22,7 +22,10 @@ class Controller {
   private onRegisterError = (errorMessage: string): void => this.view.displayRegisterUserState(errorMessage);
   private onLoginError = (errorMessage: string): void => this.view.displayUserState(errorMessage);
   private onUserNotLogged = (): void => this.view.navigateToLoginPage();
-  private onUserLogged = (): void => this.view.navigateToHabitsPage()
+  private onUserLogged = (userState: UserState): void => {
+    console.log(userState);
+    this.view.navigateToHabitsPage(userState.username);
+  }
 
   private bindRegisterProcess = (config: AuthConfig): void => this.model.onRegisterUser(config);
   private bindLoginProcess = (config: AuthConfig): void => this.model.onLoginUser(config);
