@@ -1,12 +1,16 @@
-import { AuthConfig } from './types';
+import { AuthConfig, Habit } from './types';
 import { DOMElements } from './dom-elems';
 
 export class View {
+
+  // WELCOME PAGE
   get userRegisterMail() { return DOMElements.inputRegisterEmail.value }
   get userRegisterPassword() { return DOMElements.inputRegisterPassword.value }
   get userRegisterUsername() { return DOMElements.inputRegisterUsername.value }
   get userLoginMail() { return DOMElements.inputLoginEmail.value }
   get userLoginPassword() { return DOMElements.inputLoginPassword.value }
+  // WELCOME PAGE
+  //
 
   constructor() {
     document.addEventListener('click', e => e.preventDefault());
@@ -43,7 +47,7 @@ export class View {
       })
     })
   }
-  public listenerLoginClick = (handler: any): void => {
+  public listenerLoginClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonLogin.addEventListener('click', () => {
       handler({
         email: this.userLoginMail,
@@ -65,7 +69,16 @@ export class View {
     DOMElements.username.innerText = username;
   }
 
-  // HABITS PAGE
+  // WELCOME PAGE
+  public displayHabits = (habits: Habit[]): void => {
+    habits.forEach(habit => {
+      const newHabit = document.createElement('li');
+      newHabit.innerText = habit.name;
+      newHabit.classList.add('habits-wrapper__item');
+      DOMElements.userHabits.appendChild(newHabit);
+    })
+
+  }
   public bindNavigateLogOutClick = (handler: any): void => {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();

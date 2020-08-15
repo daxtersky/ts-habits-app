@@ -2,6 +2,7 @@ import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-
 
 type ErrorMessageCallback = (errorMessage: string) => any;
 type UserStateCallback = (userState: UserState) => any;
+type HabitsCallback = (habits: Habit[]) => any;
 
 interface FirebaseConfig {
 	apiKey: string,
@@ -12,8 +13,6 @@ interface FirebaseConfig {
 	messagingSenderId: string,
 	appId: string
 }
-
-// type MyFunction = () => void;
 
 interface AuthConfig {
 	email: string,
@@ -26,8 +25,6 @@ interface UserState {
 	errorMessage: string,
 	isLogged: boolean,
 }
-
-type UserStateCallback = (userState: UserState) => any;
 
 interface Habit {
   id: number;

@@ -21,7 +21,8 @@ export const DOMElements = {
   // HABITS PAGE
   habitsPage: <HTMLElement>getElement('.habits-page'),
   username: <HTMLSpanElement>getElement('.header__username'),
-
+  userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
+  userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
 
 }
