@@ -28,7 +28,16 @@ export class View {
     })
   }
 
-  public bindRegisterClick = (handler: (config: AuthConfig) => void): void => {
+  public displayRegisterUserState = (userState) => {
+    console.log('VIEW userState:', userState);
+    DOMElements.registerErrorMessage.innerText = userState.errorMessage;
+  }
+  public displayUserState = (userState) => {
+    console.log('VIEW userState:', userState);
+    DOMElements.loginErrorMessage.innerText = userState.errorMessage;
+  }
+
+  public listenerRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonRegister.addEventListener('click', () => {
       handler({
         email: this.userRegisterMail,
@@ -37,7 +46,7 @@ export class View {
       })
     })
   }
-  public bindLoginClick = (handler: any): void => {
+  public listenerLoginClick = (handler: any): void => {
     DOMElements.buttonLogin.addEventListener('click', () => {
       handler({
         email: this.userLoginMail,
@@ -47,7 +56,6 @@ export class View {
   }
 
   public navigateToLoginPage = (): void => {
-    console.log('navigateToLoginPage', );
     DOMElements.welcomePage.classList.add('welcome-page--active')
     DOMElements.habitsPage.classList.remove('habits-page--active');
     DOMElements.modalLogin.classList.add('modal--active');
@@ -59,28 +67,28 @@ export class View {
     DOMElements.modalLogin.classList.remove('modal--active');
   }
 
-  public showRegisterResult(userState: UserState): void {
-    if(userState) {
-      console.log('showRegisterResult', userState);
-      if (userState.isLogged) {
-        this.navigateToHabitsPage()
-      };
-      if (userState.errorMessage) {
-        DOMElements.registerErrorMessage.innerText = userState.errorMessage;
-        console.log('?', DOMElements.registerErrorMessage.innerText);
-      }
-    }
-  }
+  // public showRegisterResult(userState: UserState): void {
+  //   if(userState) {
+  //     console.log('showRegisterResult', userState);
+  //     if (userState.isLogged) {
+  //       this.navigateToHabitsPage()
+  //     };
+  //     if (userState.errorMessage) {
+  //       DOMElements.registerErrorMessage.innerText = userState.errorMessage;
+  //       console.log('?', DOMElements.registerErrorMessage.innerText);
+  //     }
+  //   }
+  // }
 
-  public showLoginResult(userState: UserState): void {
-    console.log('showLoginResult', userState);
-    if (userState?.isLogged) {
-      this.navigateToHabitsPage()
-    }
-    if (userState?.errorMessage) {
-      DOMElements.loginErrorMessage.innerText = userState.errorMessage;
-    }
-  }
+  // public showLoginResult(userState: UserState): void {
+    // console.log('showLoginResult', userState);
+    // if (userState?.isLogged) {
+    //   this.navigateToHabitsPage()
+    // }
+    // if (userState?.errorMessage) {
+    //   DOMElements.loginErrorMessage.innerText = userState.errorMessage;
+    // }
+  // }
 
   // HABITS PAGE
   public bindNavigateLogOutClick = (handler: any) => {

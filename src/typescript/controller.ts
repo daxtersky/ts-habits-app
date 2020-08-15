@@ -17,54 +17,52 @@ class Controller {
     // FIREBASE
     firebase.initializeApp(this.model.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => this.userAuthStateListener(user))
+
+    this.model.bindAuthProcessChanged(this.onAuthProcessChanged);
+    this.model.bindAuthRegisterProcessChanged(this.onAuthRegisterProcessChanged);
+    this.onAuthRegisterProcessChanged(this.model.userState);
+    this.onAuthProcessChanged(this.model.userState);
+
     // WELCOME PAGE
     this.view.bindNavigateToLoginModalClick();
     this.view.bindNavigateToRegisterModalClick();
-    this.view.bindRegisterClick(this.handleRegister);
-    this.view.bindLoginClick(this.handleLogin);
+    this.view.listenerRegisterClick(this.bindRegisterProcess);
+    this.view.listenerLoginClick(this.bindLoginProcess);
+
     // HABITS PAGE
     this.view.bindNavigateLogOutClick(this.handleLogout);
+
   }
 
+  private onAuthRegisterProcessChanged = (userState: UserState) => {
+    this.view.displayRegisterUserState(userState);
+  }
+  private onAuthProcessChanged = (userState: UserState) => {
+    this.view.displayUserState(userState);
+  }
 
   // WELCOME PAGE
-  public bindRegisterResult = (userState: UserState): void => {
-    this.view.showRegisterResult(userState);
-  }
-  public bindLoginResult = (userState: UserState): void => {
-    this.view.showLoginResult(userState);
-  }
+  // public bindRegisterResult = (userState: UserState): void => {
+  //   this.view.showRegisterResult(userState);
+  // }
 
-  private handleRegister = (config: AuthConfig): void => {
-    // this.model.onHandleCallableFunction(config, firebase.functions());
+  private bindRegisterProcess = (config: AuthConfig): void => {
     this.model.onRegisterUser(config, firebase.auth());
-    this.bindRegisterResult(this.model.userState);
-    console.log('2', this.model.userState);
+    // this.bindRegisterResult(this.model.userState);
   }
-  private handleLogin = (config: AuthConfig): void => {
+  private bindLoginProcess = (config: AuthConfig): void => {
     this.model.onLoginUser(config, firebase.auth())
-    this.bindLoginResult(this.model.userState);
-    console.log('2', this.model.userState);
   }
 
   // HABITS PAGE
-  // public bindLogoutResult = (isLogged: boolean): void => {
-    // this.view.showLogoutResult(isLogged)
-  // }
-
-  private handleLogout = (): void => {
-    this.model.onLogoutUser(firebase.auth())
-    // this.bindLogoutResult(this.model.isLogged)
+  private userAuthStateListener(user: firebase.User): void {
+    this.model.updateUserLoginState(user);
+    this.model.userState.isLogged
+      ? this.view.navigateToHabitsPage()
+      : this.view.navigateToLoginPage();
   }
 
-  userAuthStateListener(user: firebase.User): void {
-    if (user) {
-      this.model.isLogged = true;
-      this.view.navigateToHabitsPage();
-    } else {
-      this.model.isLogged = false;
-      this.view.navigateToLoginPage();
-    }
-  }
+  private handleLogout = (): void => this.model.onLogoutUser(firebase.auth());
+
 
 }

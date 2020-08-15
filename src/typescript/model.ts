@@ -14,69 +14,62 @@ export class Model {
     messagingSenderId: "282926052128",
     appId: "1:282926052128:web:8044186b157d0f7952dd45"
   };
-  userState: UserState;
-
-  constructor() {
+  userState: UserState = {
+    errorMessage: '',
+    isLogged: false,
   }
+  handleAuthRegisterProcessChanged;
+  handleAuthProcessChanged;
 
+  // constructor() { }
+
+  public bindAuthRegisterProcessChanged(callback) {
+    this.handleAuthRegisterProcessChanged = callback;
+  }
+  public bindAuthProcessChanged(callback) {
+    this.handleAuthProcessChanged = callback;
+  }
   // WELCOME PAGE
 
-  // public validateRegister = (config: AuthConfig): boolean =>
-  // this.isRegistered = this.authValidator(config);
+  public updateUserLoginState = (user: firebase.User): UserState => user
+    ? this.userState = { ...this.userState, isLogged: true }
+    : this.userState = { ...this.userState, isLogged: false }
+
   public onRegisterUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
     fAuth.createUserWithEmailAndPassword(config.email, config.password)
-      .then((user) => {
-        this.userState = {
-          errorMessage: '',
-          isLogged: true,
-        }
-      })
       .catch((err) => {
-        this.userState = {
-          errorMessage: err.message,
-          isLogged: false,
-        }
-        console.log('1 err', this.userState);
+        this.userState = { ...this.userState, errorMessage: err.message };
+        this.handleAuthRegisterProcessChanged(this.userState);
       })
   }
 
-  // public validateLogin = (config: AuthConfig): boolean =>
-  // this.isLogged = this.authValidator(config);
   public onLoginUser = (config: AuthConfig, fAuth: firebase.auth.Auth) => {
     fAuth.signInWithEmailAndPassword(config.email, config.password)
-      .then((user) => {
-        this.userState = {
-          isLogged: true,
-          errorMessage: ''
-        }
-      })
       .catch((err) => {
-        this.userState = {
-          isLogged: false,
-          errorMessage: err.message
-        }
-        console.log('1 err', this.userState);
+        this.userState = { ...this.userState, errorMessage: err.message };
+        this.handleAuthProcessChanged(this.userState);
       })
   }
 
+
   // HABITS PAGE
-  public onLogoutUser = (fAuth) => {
+  public onLogoutUser = (fAuth: firebase.auth.Auth): void => {
     fAuth.signOut()
-      .then(user => {
-        console.log('logout user', user);
-        // return this.isLogged = false;
+      .then(user => console.log('logout user', user))
+      .catch(err => {
+        alert('Sign out error!');
+        console.log('logout err', err);
       })
-      .catch(err => console.log('logout err', err))
   };
 
-  // public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
-  //   console.log('register click!', config);
-  //   const sayHello = functions.httpsCallable('sayHello');
-  //   sayHello(config).then(result => {
-  //     console.log('sayHello res', config);
-  //     return result;
-  //   })
-  // }
+  /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
+       console.log('register click!', config);
+       const sayHello = functions.httpsCallable('sayHello');
+       sayHello(config).then(result => {
+         console.log('sayHello res', config);
+         return result;
+       })
+  } */
 
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {
