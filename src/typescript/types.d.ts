@@ -1,5 +1,8 @@
 import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-declaration-files/
 
+type ErrorMessageCallback = (errorMessage: string) => any;
+type UserStateCallback = (userState: UserState) => any;
+
 interface FirebaseConfig {
 	apiKey: string,
 	authDomain: string,
@@ -19,6 +22,7 @@ interface AuthConfig {
 }
 
 interface UserState {
+	username?: string;
 	errorMessage: string,
 	isLogged: boolean,
 }
