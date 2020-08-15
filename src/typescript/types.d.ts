@@ -23,6 +23,8 @@ interface UserState {
 	isLogged: boolean,
 }
 
+type UserStateCallback = (userState: UserState) => any;
+
 interface Habit {
   id: number;
 	name: string;

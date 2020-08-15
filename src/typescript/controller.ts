@@ -17,11 +17,8 @@ class Controller {
     // FIREBASE
     firebase.initializeApp(this.model.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => this.userAuthStateListener(user))
-
-    this.model.bindAuthProcessChanged(this.onAuthProcessChanged);
-    this.model.bindAuthRegisterProcessChanged(this.onAuthRegisterProcessChanged);
-    this.onAuthRegisterProcessChanged(this.model.userState);
-    this.onAuthProcessChanged(this.model.userState);
+    this.model.bindRegisterAuthChanged(this.onRegisterAuthChanged);
+    this.model.bindLoginAuthChanged(this.onLoginAuthChanged);
 
     // WELCOME PAGE
     this.view.bindNavigateToLoginModalClick();
@@ -34,11 +31,11 @@ class Controller {
 
   }
 
-  private onAuthRegisterProcessChanged = (userState: UserState) => {
-    this.view.displayRegisterUserState(userState);
+  private onRegisterAuthChanged = (userState: UserState) => {
+    this.view.displayRegisterState(userState);
   }
-  private onAuthProcessChanged = (userState: UserState) => {
-    this.view.displayUserState(userState);
+  private onLoginAuthChanged = (userState: UserState) => {
+    this.view.displayLoginState(userState);
   }
 
   // WELCOME PAGE

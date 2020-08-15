@@ -15,25 +15,23 @@ export class View {
   }
 
   // WELCOME PAGE
-  public bindNavigateToLoginModalClick = () => {
+  public bindNavigateToLoginModalClick = (): void => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
   }
-  public bindNavigateToRegisterModalClick = () => {
+  public bindNavigateToRegisterModalClick = (): void => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
       DOMElements.modalLogin.classList.remove('modal--active');
     })
   }
 
-  public displayRegisterUserState = (userState) => {
-    console.log('VIEW userState:', userState);
-    DOMElements.registerErrorMessage.innerText = userState.errorMessage;
+  public displayRegisterState = (userState: UserState): void => {
+    DOMElements.registerErrorMessage.innerText = userState.errorMessage
   }
-  public displayUserState = (userState) => {
-    console.log('VIEW userState:', userState);
+  public displayLoginState = (userState: UserState): void => {
     DOMElements.loginErrorMessage.innerText = userState.errorMessage;
   }
 
