@@ -2,6 +2,7 @@ const getElement = (selector: string): HTMLElement => document.querySelector(sel
 const getElements = (selector: string): HTMLElement[] => Array.from(document.querySelectorAll(selector));
 
 export const DOMElements = {
+  spinner: <HTMLDivElement>getElement('.spinner'),
   // WELCOME PAGE
   modalRegister: <HTMLDivElement>getElement('.modal--register'),
   navigateToLogin: <HTMLDivElement>getElement('.link-to-login'),
@@ -32,6 +33,4 @@ export const DOMElements = {
   navigateToSettings: <HTMLAnchorElement>getElement('.nav__item--settings'),
   buttonModalClose: <HTMLButtonElement[]>getElements('.button--close'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
-
-
 }

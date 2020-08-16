@@ -7,6 +7,10 @@ $light-active: #2270C2;
 $light-focused: #719ECE;
 $light-warning: #f00;
 
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
 @mixin box($padding, $background-color) {
   padding: $padding;
   border-radius: 5px;
