@@ -19,26 +19,18 @@ export class View {
   }
 
   // WELCOME PAGE
-  public bindNavigateToLoginClick = (): void => {
+  public listeterLoginClick = (): void => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
   }
-  public bindNavigateToRegisterClick = (): void => {
+  public listeterRegisterClick = (): void => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
       DOMElements.modalLogin.classList.remove('modal--active');
     })
   }
-
-  public displayRegisterUserState = (errorMessage: string): void => {
-    DOMElements.registerErrorMessage.innerText = errorMessage;
-  }
-  public displayUserState = (errorMessage: string): void => {
-    DOMElements.loginErrorMessage.innerText = errorMessage;
-  }
-
   public listenerRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonRegister.addEventListener('click', () => {
       handler({
@@ -57,7 +49,14 @@ export class View {
     })
   }
 
-  public navigateToLoginPage = (): void => { // TODO naming wrong
+  public displayRegisterState = (errorMessage: string): void => {
+    DOMElements.registerErrorMessage.innerText = errorMessage;
+  }
+  public displayLoginState = (errorMessage: string): void => {
+    DOMElements.loginErrorMessage.innerText = errorMessage;
+  }
+
+  public navigateToLoginPage = (): void => {
     DOMElements.welcomePage.classList.add('welcome-page--active')
     DOMElements.habitsPage.classList.remove('habits-page--active');
     DOMElements.modalLogin.classList.add('modal--active');
@@ -78,51 +77,50 @@ export class View {
       newHabit.classList.add('habits-wrapper__item');
       DOMElements.userHabits.appendChild(newHabit);
     })
-
   }
 
-  public bindAddHabitClick = (): void => {
+  public listenerHabitModalClick = (): void => {
     DOMElements.addHabit.addEventListener('click', () => {
       DOMElements.modalHabit.classList.add('modal--active');
       DOMElements.habitsPage.classList.add('habits-page--disabled');
     })
   }
-  public confirmHabitClick = (): void => {
+  public listenerOkHabitModalClick = (): void => {
     DOMElements.buttonHabitConfirm.addEventListener('click', () => {
       console.log('CONFIRM HABIT!');
       DOMElements.modalHabit.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
-  public closeHabitClick = (): void => {
+  public listenerCloseHabitModalClick = (): void => {
     DOMElements.buttonHabitClose.addEventListener('click', (e) => {
       DOMElements.modalHabit.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
 
-  public bindSettingsClick = (): void => { // TODO naming wrong
+  public listenerSettingsModalClick = (): void => {
     DOMElements.navigateToSettings.addEventListener('click', () => {
       DOMElements.modalSettings.classList.add('modal--active');
       DOMElements.habitsPage.classList.add('habits-page--disabled');
 
     })
   }
-  public confirmSettingsClick = (): void => {
+  public listenerOkSettingsModalClick = (): void => {
     DOMElements.buttonSettingsConfirm.addEventListener('click', () => {
       console.log('CONFIRM HABIT!');
       DOMElements.modalSettings.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
-  public closeSettingsClick = (): void => {
+  public listenerCloseSettingsModalClick = (): void => {
     DOMElements.buttonSettingsClose.addEventListener('click', (e) => {
       DOMElements.modalSettings.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
 
-  public bindNavigateLogOutClick = (handler: any): void => {
+  public listenerLogoutClick = (handler: any): void => {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();
     })

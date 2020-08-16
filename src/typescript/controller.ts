@@ -16,23 +16,23 @@ class Controller {
     this.model.bindUserAuthStateLogged(this.onUserLogged);
     this.view.listenerRegisterClick(this.bindRegisterProcess);
     this.view.listenerLoginClick(this.bindLoginProcess);
-    this.view.bindNavigateToLoginClick();
-    this.view.bindNavigateToRegisterClick();
+    this.view.listeterLoginClick();
+    this.view.listeterRegisterClick();
 
     // HABITS PAGE
     this.model.bindHabitsChange(this.onHabitsChanged);
-    this.view.bindNavigateLogOutClick(this.handleLogout);
-    this.view.bindAddHabitClick();
-    this.view.confirmHabitClick();
-    this.view.closeHabitClick();
-    this.view.bindSettingsClick();
-    this.view.confirmSettingsClick();
-    this.view.closeSettingsClick();
+    this.view.listenerHabitModalClick();
+    this.view.listenerOkHabitModalClick();
+    this.view.listenerCloseHabitModalClick();
+    this.view.listenerSettingsModalClick();
+    this.view.listenerOkSettingsModalClick();
+    this.view.listenerCloseSettingsModalClick();
+    this.view.listenerLogoutClick(this.handleLogout);
   }
 
   // WELCOME PAGE
-  private onRegisterError = (errorMessage: string): void => this.view.displayRegisterUserState(errorMessage);
-  private onLoginError = (errorMessage: string): void => this.view.displayUserState(errorMessage);
+  private onRegisterError = (errorMessage: string): void => this.view.displayRegisterState(errorMessage);
+  private onLoginError = (errorMessage: string): void => this.view.displayLoginState(errorMessage);
   private onUserNotLogged = (): void => this.view.navigateToLoginPage();
   private onUserLogged = (userState: UserState): void => this.view.navigateToHabitsPage(userState.username);
   private bindRegisterProcess = (config: AuthConfig): void => this.model.onRegisterUser(config);
