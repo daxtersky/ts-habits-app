@@ -7,7 +7,7 @@ export const DOMElements = {
   loginErrorMessage: <HTMLParagraphElement>getElement('.modal__text--login-error'),
   username: <HTMLSpanElement>getElement('.header__username'),
   userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
-  userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
+  userHabitItems: <HTMLLIElement[]>getElements('.habits-wrapper__item'),
   // PAGES & MODALS
   welcomePage: <HTMLElement>getElement('.welcome-page'),
   habitsPage: <HTMLElement>getElement('.habits-page'),
@@ -30,7 +30,7 @@ export const DOMElements = {
   // BUTTONS
   buttonToRegister: <HTMLButtonElement>getElement('.button--auth--register'),
   buttonToLogin: <HTMLButtonElement>getElement('.button--auth--login'),
-  buttonToHabitModal: <HTMLButtonElement>getElement('.button--add-habit'),
+  buttonToNewHabitModal: <HTMLButtonElement>getElement('.button--add-habit'),
   buttonToHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
   buttonToSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
   buttonToModalClose: <HTMLButtonElement[]>getElements('.button--close'),

@@ -21,15 +21,14 @@ class Controller {
     this.model.bindUserAuthStateLogged(this.onUserLogged);
     // NEW HABIT
     this.view.listenerConfirmHabitModalClick(this.bindHabitAdd);
-    this.model.bindHabitsChange(this.onHabitsChanged);
+    this.model.bindHabitsChange(this.onHabitsChanged); // TODO
     // SETTINGS
     this.view.listenerConfirmSettingsModalClick();
     // this.model.bind....
     // NAVIGATE
     this.view.navigateToRegisterModalClick();
     this.view.navigateToLoginModalClick();
-    this.view.navigateToHabitModalClick();
-    this.view.navigateToHabitModalClick();
+    // this.view.navigateToHabitModalClick(); // TODO
     this.view.navigateToSettingsModalClick();
     this.view.navigateToCloseModalClick();
     this.view.navigateToLogoutClick(this.handleLogout);
@@ -61,6 +60,7 @@ class Controller {
   // NEW HABIT
   private bindHabitAdd = (habit: Partial<Habit>): void => this.model.onHabitAdd(habit);
   private onHabitsChanged = (habits: Partial<Habit>[]): void => {
+    console.log('onHabitsChanged', );
     this.view.displayHabits(habits);
   }
   // SETTINGS

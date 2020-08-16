@@ -3,6 +3,8 @@
 
 ### Intro
 
+--> [**TS Habits App demo**](https://daxtersky.github.io/ts-habits-app/)
+
 Habits app evolved from everlasting goal to create my first real ToDo App in JavaScript.... but in time the idea went just too simple (not easy) to be interesting... So I've decided to do switch JavaScript to TypeScript, write all the code in accordnance with MCV (Model-View-Controller) design pattern. Data is stored in serverless backend (Google Firebase), and the app styled in SCSS with BEM. Everything bundled by [Parcel](https://parceljs.org/) and checked by Eslint with Airbnb [configuration](https://www.npmjs.com/package/eslint-config-airbnb).
 
 ### App

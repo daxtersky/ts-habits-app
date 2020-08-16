@@ -78,10 +78,7 @@ export class Model {
   // NEW HABIT
   public onHabitAdd = (habit: Partial<Habit>): void => {
     this.habits.push(habit);
-    console.log('2 onHabitAdd', this.habits);
-    // this.handleHabitAdd(habit);
     this.onHabitsChange(this.habits);
-
   }
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
   // NAVIGATE
@@ -111,6 +108,7 @@ export class Model {
       { id: 9, name: 'Talk to a stranger', order: 9, habitType: HabitType.Week, description: 'Meet new people!', activiTyActual: 0, activiTyGoal: 1, habitColor: this.getDefaultColor(HabitType.Week) }
     ]
     this.onHabitsChange(this.habits);
+    // console.log('HABITS', this.habits);
   }
 
   // ** hideForLater...

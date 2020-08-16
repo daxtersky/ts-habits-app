@@ -74,12 +74,14 @@ body {
   font-size: 3rem;
   &::before {
     content: '';
-    height: 50px;
-    width: 50px;
-    border: 6px solid $light-theme-background;
-    border-top-color: $light-theme-bright;
-    border-radius: 35%;
-    animation: spinner .8s linear infinite;
+    height: 180px;
+    width: 180px;
+    border: 10px solid $light-theme-light;
+    border-left-color: lighten($light-theme-light, 12%);
+    border-top-color: darken($light-theme-light, 14%);
+    border-right-color: darken($light-theme-light, 17%);
+    border-radius: 50%;
+    animation: spinner 1.2s linear infinite;
   }
 }
 

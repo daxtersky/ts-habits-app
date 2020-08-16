@@ -2,6 +2,9 @@ import { AuthConfig, Habit } from './types';
 import { DOMElements } from './dom-elems';
 
 export class View {
+  navigatorsToHabitModal: Array<HTMLButtonElement | HTMLLIElement[]> = [
+    DOMElements.buttonToNewHabitModal, DOMElements.userHabitItems
+  ];
 
   // WELCOME PAGE
   get userRegisterMail() { return DOMElements.inputRegisterEmail.value }
@@ -14,8 +17,14 @@ export class View {
   set habitName(newValue: string) { DOMElements.inputHabitName.value = newValue }
 
   constructor() {
-    document.addEventListener('click', e => e.preventDefault());
-    DOMElements.inputRegisterEmail.select();
+    document.addEventListener('click', e => {
+      e.preventDefault();
+      if ((e.target as HTMLElement).className.includes('button--add-habit')) {
+        this.openHabitModal(e, 1);
+      } else if ((e.target as HTMLElement).className.includes('habits-wrapper__item')) {
+        this.openHabitModal(e, 2);
+      }
+    });
   }
 
   // REGISTER
@@ -93,15 +102,14 @@ export class View {
       DOMElements.userHabits.appendChild(newHabit);
     })
   }
+  private openHabitModal = (e, kind: number): void => {
+    DOMElements.modalHabit.classList.add('modal--active');
+    DOMElements.habitsPage.classList.add('habits-page--disabled');
+    DOMElements.inputHabitName.focus();
+    console.log('e', e);
+  }
 
   // HABITS PAGE - MODALS
-  public navigateToHabitModalClick = (): void => {
-    DOMElements.buttonToHabitModal.addEventListener('click', () => {
-      DOMElements.modalHabit.classList.add('modal--active');
-      DOMElements.habitsPage.classList.add('habits-page--disabled');
-      DOMElements.inputHabitName.select();
-    })
-  }
   public listenerConfirmHabitModalClick = (handler: (habit: Partial<Habit>) => void): void => {
     DOMElements.buttonToHabitConfirm.addEventListener('click', () => {
       handler({
