@@ -25,7 +25,8 @@ export const DOMElements = {
   username: <HTMLSpanElement>getElement('.header__username'),
   userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
   userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
-  addHabit: <HTMLButtonElement>getElement('.button--add-habit'),
+  navigateToHabitModal: <HTMLButtonElement>getElement('.button--add-habit'), // TODO correct naming!
+  inputHabitName:<HTMLInputElement>getElement('.modal__input--habit-name'),
   modalHabit: <HTMLDivElement>getElement('.modal--habit'),
   buttonHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
   modalSettings: <HTMLDivElement>getElement('.modal--settings'),

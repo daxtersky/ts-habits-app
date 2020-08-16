@@ -2,7 +2,7 @@ import * as enums from './enums'; // https://lukasbehal.com/2017-05-22-enums-in-
 
 type ErrorMessageCallback = (errorMessage: string) => any;
 type UserStateCallback = (userState: UserState) => any;
-type HabitsCallback = (habits: Habit[]) => any;
+type HabitsCallback = (habits: Partial<Habit>[]) => any;
 
 interface FirebaseConfig {
 	apiKey: string,

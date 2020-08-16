@@ -11,7 +11,7 @@ export class View {
   get userLoginPassword() { return DOMElements.inputLoginPassword.value }
   // HABITS PAGE
   //
-  // get habitName() { returm DOMElements.input... }
+  get habitName() { return DOMElements.inputHabitName.value }
 
   constructor() {
     document.addEventListener('click', e => e.preventDefault());
@@ -46,8 +46,8 @@ export class View {
 
   public listenerRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonRegister.addEventListener('click', () => {
-    this.showSpinner();
-    handler({
+      this.showSpinner();
+      handler({
         email: this.userRegisterMail,
         password: this.userRegisterPassword,
         username: this.userRegisterUsername
@@ -61,6 +61,10 @@ export class View {
         email: this.userLoginMail,
         password: this.userLoginPassword
       })
+      console.log('click', {
+        email: this.userLoginMail,
+        password: this.userLoginPassword
+      });
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
@@ -75,25 +79,30 @@ export class View {
 
   // HABITS PAGE
   public navigateToHabitModalClick = (): void => {
-    DOMElements.addHabit.addEventListener('click', () => {
+    DOMElements.navigateToHabitModal.addEventListener('click', () => {
       DOMElements.modalHabit.classList.add('modal--active');
       DOMElements.habitsPage.classList.add('habits-page--disabled');
     })
   }
-  public navigateAfterOkHabitModalClick = (): void => {
+  public listenerConfirmHabitModalClick = (handler: (habit: Partial<Habit>) => void): void => {
     DOMElements.buttonHabitConfirm.addEventListener('click', () => {
-      console.log('CONFIRM HABIT!');
+      // this.showSpinner();
+      handler({
+        name: this.habitName,
+      });
+      console.log('1 click')
       DOMElements.modalHabit.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
+  //
   public navigateToSettingsModalClick = (): void => {
     DOMElements.navigateToSettings.addEventListener('click', () => {
       DOMElements.modalSettings.classList.add('modal--active');
       DOMElements.habitsPage.classList.add('habits-page--disabled');
     })
   }
-  public navigateAfterOkSettingsModalClick = (): void => {
+  public listenerOkSettingsModalClick = (): void => {
     DOMElements.buttonSettingsConfirm.addEventListener('click', () => {
       console.log('CONFIRM HABIT!');
       DOMElements.modalSettings.classList.remove('modal--active');
@@ -115,7 +124,21 @@ export class View {
     })
   }
 
-  public displayHabits = (habits: Habit[]): void => {
+  public displayHabit = (habit: Partial<Habit>): void => {
+    console.log('VIEW displayHabit sucess', habit);
+    // habits.forEach(habit => {
+    //   const newHabit = document.createElement('li');
+    //   newHabit.innerText = habit.name;
+    //   newHabit.classList.add('habits-wrapper__item');
+    //   DOMElements.userHabits.appendChild(newHabit);
+    // })
+  }
+  public displayHabits = (habits: Partial<Habit>[]): void => {
+    // console.log('actual habits', DOMElements.userHabits.childNodes);
+    while (DOMElements.userHabits.hasChildNodes()) {
+      DOMElements.userHabits.removeChild(DOMElements.userHabits.lastChild);
+    }
+    // habits-wrapper__title
     habits.forEach(habit => {
       const newHabit = document.createElement('li');
       newHabit.innerText = habit.name;
@@ -123,6 +146,7 @@ export class View {
       DOMElements.userHabits.appendChild(newHabit);
     })
   }
+
   // SHARED
   private showSpinner = () => DOMElements.spinner.classList.add('spinner--active');
   public hideSpinner = () => DOMElements.spinner.classList.remove('spinner--active');

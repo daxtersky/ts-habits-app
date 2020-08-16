@@ -16,7 +16,7 @@ export class Model {
       case HabitType.Year: return 'yellow';
     }
   }
-  private habits: Habit[];
+  private habits: Partial<Habit>[];
   private firebaseConfig: FirebaseConfig = {
     apiKey: "AIzaSyAekSW2R8QuGPeiQret4T7zAgBYoBNGWcg",
     authDomain: "habits-cloud-functions-9dccc.firebaseapp.com",
@@ -31,6 +31,7 @@ export class Model {
   private userAuthStateNotLogged: UserStateCallback;
   private userAuthStateLogged: UserStateCallback;
   private onHabitsChange: HabitsCallback;
+  private handleHabitAdd: any;
   protected userState: UserState = {
     errorMessage: '',
     isLogged: false,
@@ -46,6 +47,7 @@ export class Model {
   public bindLoginError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleLoginError = callback;
   public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
   public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
+  public bindHabitAdd = (callback) => this.handleHabitAdd = callback;
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
 
   public onRegisterUser = (config: AuthConfig): void => {
@@ -64,6 +66,13 @@ export class Model {
         this.userState = { ...this.userState, errorMessage: err.message };
         this.handleLoginError(this.userState.errorMessage);
       })
+  }
+  public onHabitAdd = (habit: Partial<Habit>): void => {
+    this.habits.push(habit);
+    console.log('2 onHabitAdd', this.habits);
+    // this.handleHabitAdd(habit);
+    this.onHabitsChange(this.habits);
+
   }
   private userAuthStateChanged(user: firebase.User): void {
     if (user) {

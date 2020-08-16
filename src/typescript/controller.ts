@@ -19,17 +19,19 @@ class Controller {
     this.view.listenerRegisterClick(this.bindRegisterProcess);
     this.view.listenerLoginClick(this.bindLoginProcess);
 
-    // HABITS PAGE
+    // NEW HABIT
+    this.view.navigateToHabitModalClick();
+    this.model.bindHabitAdd(this.onHabitAdded);
+    this.view.listenerConfirmHabitModalClick(this.bindHabitAdd);
+
     this.model.bindHabitsChange(this.onHabitsChanged);
     this.view.navigateToHabitModalClick();
-    this.view.navigateAfterOkHabitModalClick();
     this.view.navigateToSettingsModalClick();
-    this.view.navigateAfterOkSettingsModalClick();
+    this.view.listenerOkSettingsModalClick();
     this.view.navigateToCloseModalClick();
     this.view.navigateToLogoutClick(this.handleLogout);
   }
 
-  // WELCOME PAGE
   private onRegisterError = (errorMessage: string): void => {
     this.view.hideSpinner();
     this.view.displayRegisterState(errorMessage);
@@ -52,8 +54,20 @@ class Controller {
   private bindRegisterProcess = (config: AuthConfig): void => this.model.onRegisterUser(config);
   private bindLoginProcess = (config: AuthConfig): void => this.model.onLoginUser(config);
 
-  // HABITS PAGE
-  private onHabitsChanged = (habits: Habit[]): void => this.view.displayHabits(habits);
+  // NEW HABIT
+  private bindHabitAdd = (habit: Partial<Habit>): void => this.model.onHabitAdd(habit);
+  private onHabitAdded = (habit: Partial<Habit>): void => {
+    console.log('CONTROLLER', habit);
+    // setTimeout(() => {
+      // this.view.hideSpinner();
+      this.view.displayHabit(habit);
+    // }, 800);
+  };
+  //
+  private onHabitsChanged = (habits: Partial<Habit>[]): void => {
+  console.log('3 onHabitsChanged', habits);
+    this.view.displayHabits(habits);
+  }
   private handleLogout = (): void => this.model.onLogoutUser();
 
 }

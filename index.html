@@ -109,14 +109,14 @@
     <div class="modal modal--habit">
       <h2 class="modal__title">Habit title</h2>
       <form class="modal__form">
-        <label style="margin-right: 5px;" for="">Habit name</label><input class="modal__input" type="text" name="" id=""
-          placeholder="habit name...">
-        <label style="margin-right: 5px;" for="">Frequecy</label><input class="modal__input" type="text" name="" id=""
-          placeholder="frequency...">
-        <label style="margin-right: 5px;" for="">Goal</label><input class="modal__input" type="text" name="" id=""
-          placeholder="goal...">
-        <label style="margin-right: 5px;" for="">Description</label>
-        <textarea class="modal__input" name="" id="" rows="8" placeholder="description..."></textarea>
+        <label type="text" for="" required>Habit name</label>
+        <input class="modal__input modal__input--habit-name" type="text" name="" id="" placeholder="habit name...">
+        <label for="">Frequecy</label>
+        <input disabled class="modal__input" type="text" name="" id="" placeholder="available soon...">
+        <label for="">Goal</label>
+        <input disabled  class="modal__input" type="text" name="" id="" placeholder="available soon...">
+        <label for="">Description</label>
+        <textarea disabled class="modal__input" name="" id="" rows="8" placeholder="available soon..."></textarea>
         <div class="modal-buttons-wrapper">
           <button class="button button--habit-confirm">Add</button>
           <button class="button button--close button--close-habit">Close</button>
