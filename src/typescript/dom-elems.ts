@@ -23,6 +23,14 @@ export const DOMElements = {
   username: <HTMLSpanElement>getElement('.header__username'),
   userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
   userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
+  addHabit: <HTMLButtonElement>getElement('.button--add-habit'),
+  modalHabit: <HTMLDivElement>getElement('.modal--habit'),
+  buttonHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
+  buttonHabitClose: <HTMLButtonElement>getElement('.button--habit-close'),
+  modalSettings: <HTMLDivElement>getElement('.modal--settings'),
+  buttonSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
+  buttonSettingsClose: <HTMLButtonElement>getElement('.button--settings-close'),
+  navigateToSettings: <HTMLAnchorElement>getElement('.nav__item--settings'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
 
 }

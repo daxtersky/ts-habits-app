@@ -16,12 +16,19 @@ class Controller {
     this.model.bindUserAuthStateLogged(this.onUserLogged);
     this.view.listenerRegisterClick(this.bindRegisterProcess);
     this.view.listenerLoginClick(this.bindLoginProcess);
-    this.view.bindNavigateToLoginModalClick();
-    this.view.bindNavigateToRegisterModalClick();
+    this.view.bindNavigateToLoginClick();
+    this.view.bindNavigateToRegisterClick();
 
     // HABITS PAGE
     this.model.bindHabitsChange(this.onHabitsChanged);
     this.view.bindNavigateLogOutClick(this.handleLogout);
+    this.view.bindAddHabitClick();
+    this.view.confirmHabitClick();
+    this.view.closeHabitClick();
+    // this.view.bindNavigateSettingsClick();
+    this.view.bindSettingsClick();
+    this.view.confirmSettingsClick();
+    this.view.closeSettingsClick();
   }
 
   // WELCOME PAGE

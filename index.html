@@ -33,7 +33,7 @@
       </header>
       <aside class="aside">
         <nav class="nav">
-          <a class="nav__item">
+          <a class="nav__item nav__item--settings">
             <ion-icon class="nav__icon" name="settings-sharp"></ion-icon>
             <span class="icon-wrapper__text">Settings</span>
           </a>
@@ -53,6 +53,7 @@
         <section class="habits-wrapper">
           <h3 class="habits-wrapper__title">Get things done Miko!</h3>
           <ol class="habits-wrapper__list habits-wrapper__list--user-list">
+            <!-- <li class="habits-wrapper__item">Habit</span></li> -->
           </ol>
         </section>
         <section class="habits-wrapper">
@@ -102,12 +103,31 @@
         <p class="modal__text modal__text--login-error"></p>
       </form>
     </div>
-    <div class="modal modal--confirm">
-      <h2 class="modal__title">Modal title</h2>
+    <div class="modal modal--habit">
+      <h2 class="modal__title">Habit title</h2>
+      <form class="modal__form">
+        <label style="margin-right: 5px;" for="">Habit name</label><input class="modal__input" type="text" name="" id=""
+          placeholder="habit name...">
+        <label style="margin-right: 5px;" for="">Frequecy</label><input class="modal__input" type="text" name="" id=""
+          placeholder="frequency...">
+        <label style="margin-right: 5px;" for="">Goal</label><input class="modal__input" type="text" name="" id=""
+          placeholder="goal...">
+        <label style="margin-right: 5px;" for="">Description</label>
+        <textarea class="modal__input" name="" id="" rows="8" placeholder="description..."></textarea>
+        <div class="modal-buttons-wrapper">
+          <button class="button button--habit-confirm">Add</button>
+          <button class="button button--habit-close">Close</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal modal--settings">
+      <h2 class="modal__title">Settings</h2>
       <form class="modal__form">
         <input class="modal__input" type="text" name="" id="" placeholder="placeholder...">
-        <button class="button button--confirm">Confirm</button>
-        <p class="modal__text modal__text--error"></p>
+        <div class="modal-buttons-wrapper">
+          <button class="button button--settings-confirm">Save</button>
+          <button class="button button--settings-close">Close</button>
+        </div>
       </form>
     </div>
 

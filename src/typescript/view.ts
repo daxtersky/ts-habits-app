@@ -18,16 +18,50 @@ export class View {
   }
 
   // WELCOME PAGE
-  public bindNavigateToLoginModalClick = (): void => {
+  public bindNavigateToLoginClick = (): void => {
     DOMElements.navigateToLogin.addEventListener('click', () => {
       DOMElements.modalRegister.classList.remove('modal--active');
       DOMElements.modalLogin.classList.add('modal--active');
     })
   }
-  public bindNavigateToRegisterModalClick = (): void => {
+  public bindNavigateToRegisterClick = (): void => {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
       DOMElements.modalLogin.classList.remove('modal--active');
+    })
+  }
+
+  public bindAddHabitClick = (): void => {
+    DOMElements.addHabit.addEventListener('click', () => {
+      DOMElements.modalHabit.classList.add('modal--active');
+    })
+  }
+  public confirmHabitClick = (): void => {
+    DOMElements.buttonHabitConfirm.addEventListener('click', () => {
+      console.log('CONFIRM HABIT!');
+      DOMElements.modalHabit.classList.remove('modal--active');
+    })
+  }
+  public closeHabitClick = (): void => {
+    DOMElements.buttonHabitClose.addEventListener('click', (e) => {
+      DOMElements.modalHabit.classList.remove('modal--active');
+    })
+  }
+
+  public bindSettingsClick = (): void => {
+    DOMElements.navigateToSettings.addEventListener('click', () => {
+      DOMElements.modalSettings.classList.add('modal--active');
+    })
+  }
+  public confirmSettingsClick = (): void => {
+    DOMElements.buttonSettingsConfirm.addEventListener('click', () => {
+      console.log('CONFIRM HABIT!');
+      DOMElements.modalSettings.classList.remove('modal--active');
+    })
+  }
+  public closeSettingsClick = (): void => {
+    DOMElements.buttonSettingsClose.addEventListener('click', (e) => {
+      DOMElements.modalSettings.classList.remove('modal--active');
     })
   }
 

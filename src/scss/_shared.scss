@@ -31,6 +31,10 @@ $light-warning: #f00;
   border: 0;
   color: $light-theme-darker;
   transition: all 300ms ease-out;
+  font-size: .8rem;
+  text-transform: uppercase;
+  @include box(.5rem, $light-theme-light);
+  min-width: 80px;
 
   &:hover { // TODO , &:focus, &:active
     text-decoration: underline;
@@ -42,12 +46,10 @@ $light-warning: #f00;
     width: 120px;
     font-size: .8rem;
     text-transform: uppercase;
-    @include box(.5rem, $light-theme-light);
   }
   &--add-habit {
     display: flex;
     align-items: center;
-    // font-weight: bold;
     text-transform: uppercase;
     position: absolute;
     right: 40px;
@@ -59,11 +61,8 @@ $light-warning: #f00;
       padding-right: 8px;
     }
   }
-  &--confirm {
-    font-size: .8rem;
-    text-transform: uppercase;
-    @include box(.5rem, $light-theme-light);
-  }
+  // &--confirm { }
+  // &--close { }
 }
 
 .modal {
@@ -73,13 +72,11 @@ $light-warning: #f00;
   width: 300px;
   @include box(1rem, $light-theme-light);
 
-  &--register {
-    display: none;
-  }
-  &--login {
-    display: none;
-  }
-  &--confirm {
+  &--register,
+  &--login,
+  &--habit,
+  &--confirm,
+  &--settings {
     display: none;
   }
   &--active {
@@ -114,6 +111,10 @@ $light-warning: #f00;
       border: 1px solid $light-focused;
     }
   }
-  // &__error {
-  // }
+  // &__error { }
+  .modal-buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+  }
 }
