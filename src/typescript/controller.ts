@@ -23,10 +23,9 @@ class Controller {
     this.model.bindHabitsChange(this.onHabitsChanged);
     this.view.listenerHabitModalClick();
     this.view.listenerOkHabitModalClick();
-    this.view.listenerCloseHabitModalClick();
     this.view.listenerSettingsModalClick();
     this.view.listenerOkSettingsModalClick();
-    this.view.listenerCloseSettingsModalClick();
+    this.view.listenerCloseModalClick();
     this.view.listenerLogoutClick(this.handleLogout);
   }
 

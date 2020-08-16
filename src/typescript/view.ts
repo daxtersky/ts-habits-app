@@ -70,15 +70,6 @@ export class View {
   }
 
   // HABITS PAGE
-  public displayHabits = (habits: Habit[]): void => {
-    habits.forEach(habit => {
-      const newHabit = document.createElement('li');
-      newHabit.innerText = habit.name;
-      newHabit.classList.add('habits-wrapper__item');
-      DOMElements.userHabits.appendChild(newHabit);
-    })
-  }
-
   public listenerHabitModalClick = (): void => {
     DOMElements.addHabit.addEventListener('click', () => {
       DOMElements.modalHabit.classList.add('modal--active');
@@ -92,13 +83,6 @@ export class View {
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
-  public listenerCloseHabitModalClick = (): void => {
-    DOMElements.buttonHabitClose.addEventListener('click', (e) => {
-      DOMElements.modalHabit.classList.remove('modal--active');
-      DOMElements.habitsPage.classList.remove('habits-page--disabled');
-    })
-  }
-
   public listenerSettingsModalClick = (): void => {
     DOMElements.navigateToSettings.addEventListener('click', () => {
       DOMElements.modalSettings.classList.add('modal--active');
@@ -113,17 +97,26 @@ export class View {
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
-  public listenerCloseSettingsModalClick = (): void => {
-    DOMElements.buttonSettingsClose.addEventListener('click', (e) => {
-      DOMElements.modalSettings.classList.remove('modal--active');
+  public listenerCloseModalClick = (): void => {
+    DOMElements.buttonModalClose.forEach(button => button.addEventListener('click', e => {
+      (e.target as HTMLElement).classList.contains('button--close-habit') // else 'button--close-settings'
+        ? DOMElements.modalHabit.classList.remove('modal--active')
+        : DOMElements.modalSettings.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
-    })
+    }));
   }
-
   public listenerLogoutClick = (handler: any): void => {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();
     })
   }
 
+  public displayHabits = (habits: Habit[]): void => {
+    habits.forEach(habit => {
+      const newHabit = document.createElement('li');
+      newHabit.innerText = habit.name;
+      newHabit.classList.add('habits-wrapper__item');
+      DOMElements.userHabits.appendChild(newHabit);
+    })
+  }
 }

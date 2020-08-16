@@ -1,4 +1,5 @@
 const getElement = (selector: string): HTMLElement => document.querySelector(selector);
+const getElements = (selector: string): HTMLElement[] => Array.from(document.querySelectorAll(selector));
 
 export const DOMElements = {
   // WELCOME PAGE
@@ -26,11 +27,11 @@ export const DOMElements = {
   addHabit: <HTMLButtonElement>getElement('.button--add-habit'),
   modalHabit: <HTMLDivElement>getElement('.modal--habit'),
   buttonHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
-  buttonHabitClose: <HTMLButtonElement>getElement('.button--habit-close'),
   modalSettings: <HTMLDivElement>getElement('.modal--settings'),
   buttonSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
-  buttonSettingsClose: <HTMLButtonElement>getElement('.button--settings-close'),
   navigateToSettings: <HTMLAnchorElement>getElement('.nav__item--settings'),
+  buttonModalClose: <HTMLButtonElement[]>getElements('.button--close'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
+
 
 }
