@@ -3,35 +3,35 @@ const getElements = (selector: string): HTMLElement[] => Array.from(document.que
 
 export const DOMElements = {
   spinner: <HTMLDivElement>getElement('.spinner'),
-  // WELCOME PAGE
-  modalRegister: <HTMLDivElement>getElement('.modal--register'),
-  navigateToLogin: <HTMLDivElement>getElement('.link-to-login'),
-  modalLogin: <HTMLDivElement>getElement('.modal--login'),
-  navigateToRegister: <HTMLDivElement>getElement('.link-to-register'),
-
+  registerErrorMessage: <HTMLParagraphElement>getElement('.modal__text--register-error'),
+  loginErrorMessage: <HTMLParagraphElement>getElement('.modal__text--login-error'),
+  username: <HTMLSpanElement>getElement('.header__username'),
+  userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
+  userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
+  // PAGES & MODALS
   welcomePage: <HTMLElement>getElement('.welcome-page'),
+  habitsPage: <HTMLElement>getElement('.habits-page'),
+  modalRegister: <HTMLDivElement>getElement('.modal--register'),
+  modalLogin: <HTMLDivElement>getElement('.modal--login'),
+  modalHabit: <HTMLDivElement>getElement('.modal--habit'),
+  modalSettings: <HTMLDivElement>getElement('.modal--settings'),
+  // INPUTS
   inputRegisterEmail: <HTMLInputElement>getElement('.modal__input--register-email'),
   inputRegisterPassword: <HTMLInputElement>getElement('.modal__input--register-password'),
   inputRegisterUsername: <HTMLInputElement>getElement('.modal__input--register-name'),
   inputLoginEmail: <HTMLInputElement>getElement('.modal__input--login-email'),
   inputLoginPassword: <HTMLInputElement>getElement('.modal__input--login-password'),
-  buttonRegister: <HTMLButtonElement>getElement('.button--auth--register'),
-  buttonLogin: <HTMLButtonElement>getElement('.button--auth--login'),
-  registerErrorMessage: <HTMLParagraphElement>getElement('.modal__text--register-error'),
-  loginErrorMessage: <HTMLParagraphElement>getElement('.modal__text--login-error'),
-
-  // HABITS PAGE
-  habitsPage: <HTMLElement>getElement('.habits-page'),
-  username: <HTMLSpanElement>getElement('.header__username'),
-  userHabits: <HTMLOListElement>getElement('.habits-wrapper__list--user-list'),
-  userHabitItem: <HTMLLIElement>getElement('.habits-wrapper__item'),
-  navigateToHabitModal: <HTMLButtonElement>getElement('.button--add-habit'), // TODO correct naming!
   inputHabitName:<HTMLInputElement>getElement('.modal__input--habit-name'),
-  modalHabit: <HTMLDivElement>getElement('.modal--habit'),
-  buttonHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
-  modalSettings: <HTMLDivElement>getElement('.modal--settings'),
-  buttonSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
+  // LINKS
+  navigateToLogin: <HTMLAnchorElement>getElement('.link-to-login'),
+  navigateToRegister: <HTMLAnchorElement>getElement('.link-to-register'),
   navigateToSettings: <HTMLAnchorElement>getElement('.nav__item--settings'),
-  buttonModalClose: <HTMLButtonElement[]>getElements('.button--close'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
+  // BUTTONS
+  buttonToRegister: <HTMLButtonElement>getElement('.button--auth--register'),
+  buttonToLogin: <HTMLButtonElement>getElement('.button--auth--login'),
+  buttonToHabitModal: <HTMLButtonElement>getElement('.button--add-habit'),
+  buttonToHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
+  buttonToSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
+  buttonToModalClose: <HTMLButtonElement[]>getElements('.button--close'),
 }

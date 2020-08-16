@@ -8,14 +8,6 @@ import 'firebase/auth';
 // import 'firebase/storage'; // If using Firebase storage
 
 export class Model {
-  private getDefaultColor = (habitType: HabitType): string => {
-    switch (habitType) {
-      case HabitType.Day: return 'green';
-      case HabitType.Week: return 'pink';
-      case HabitType.Month: return 'blue';
-      case HabitType.Year: return 'yellow';
-    }
-  }
   private habits: Partial<Habit>[];
   private firebaseConfig: FirebaseConfig = {
     apiKey: "AIzaSyAekSW2R8QuGPeiQret4T7zAgBYoBNGWcg",
@@ -26,30 +18,28 @@ export class Model {
     messagingSenderId: "282926052128",
     appId: "1:282926052128:web:8044186b157d0f7952dd45"
   };
-  private handleRegisterError: ErrorMessageCallback;
-  private handleLoginError: ErrorMessageCallback;
-  private userAuthStateNotLogged: UserStateCallback;
-  private userAuthStateLogged: UserStateCallback;
-  private onHabitsChange: HabitsCallback;
-  private handleHabitAdd: any;
   protected userState: UserState = {
     errorMessage: '',
     isLogged: false,
   }
+  // REGISTER
+  private handleRegisterError: ErrorMessageCallback;
+  // LOGIN
+  private handleLoginError: ErrorMessageCallback;
+  // LOGIN STATE CHANGE (FIREBASE AUTH)
+  private userAuthStateNotLogged: UserStateCallback;
+  private userAuthStateLogged: UserStateCallback;
+  // NEW HABIT
+  private onHabitsChange: HabitsCallback;
+  // SETTINGS
+  // NAVIGATE
 
   constructor() {
     firebase.initializeApp(this.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => this.userAuthStateChanged(user));
   }
 
-  // WELCOME PAGE
-  public bindRegisterError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleRegisterError = callback;
-  public bindLoginError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleLoginError = callback;
-  public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
-  public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
-  public bindHabitAdd = (callback) => this.handleHabitAdd = callback;
-  public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
-
+  // REGISTER
   public onRegisterUser = (config: AuthConfig): void => {
     firebase.auth()
       .createUserWithEmailAndPassword(config.email, config.password)
@@ -59,6 +49,8 @@ export class Model {
         this.handleRegisterError(this.userState.errorMessage);
       })
   }
+  public bindRegisterError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleRegisterError = callback;
+  // LOGIN
   public onLoginUser = (config: AuthConfig): void => {
     firebase.auth()
       .signInWithEmailAndPassword(config.email, config.password)
@@ -67,13 +59,8 @@ export class Model {
         this.handleLoginError(this.userState.errorMessage);
       })
   }
-  public onHabitAdd = (habit: Partial<Habit>): void => {
-    this.habits.push(habit);
-    console.log('2 onHabitAdd', this.habits);
-    // this.handleHabitAdd(habit);
-    this.onHabitsChange(this.habits);
-
-  }
+  public bindLoginError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleLoginError = callback;
+  // LOGIN STATE CHANGE (FIREBASE AUTH)
   private userAuthStateChanged(user: firebase.User): void {
     if (user) {
       this.userState = { ...this.userState, isLogged: true };
@@ -86,10 +73,31 @@ export class Model {
       console.log('not logged!', this.userState);
     }
   }
+  public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
+  public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
+  // NEW HABIT
+  public onHabitAdd = (habit: Partial<Habit>): void => {
+    this.habits.push(habit);
+    console.log('2 onHabitAdd', this.habits);
+    // this.handleHabitAdd(habit);
+    this.onHabitsChange(this.habits);
+
+  }
+  public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
+  // NAVIGATE
+  public onLogoutUser = (): void => {
+    firebase.auth().signOut();
+  }
+  // HELPER FUNCTIONS
+  private getDefaultColor = (habitType: HabitType): string => {
+    switch (habitType) {
+      case HabitType.Day: return 'green';
+      case HabitType.Week: return 'pink';
+      case HabitType.Month: return 'blue';
+      case HabitType.Year: return 'yellow';
+    }
+  }
   private setUsername = (config: AuthConfig): string => this.userState.username = config.username ? config.username : config.email
-
-  // WELCOME PAGE
-
   private readHabits() {
     this.habits = [
       { id: 1, name: 'Brush your teeth', order: 1, habitType: HabitType.Day, description: 'Brush your teeth twice everyday!', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day), },
@@ -104,11 +112,8 @@ export class Model {
     ]
     this.onHabitsChange(this.habits);
   }
-  public onLogoutUser = (): void => {
-    firebase.auth().signOut();
-  }
 
-  ////////////////////
+  // ** hideForLater...
   hideForLater = {
     /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
       console.log('register click!', config);
