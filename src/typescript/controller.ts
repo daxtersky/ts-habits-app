@@ -25,7 +25,6 @@ class Controller {
     this.view.bindAddHabitClick();
     this.view.confirmHabitClick();
     this.view.closeHabitClick();
-    // this.view.bindNavigateSettingsClick();
     this.view.bindSettingsClick();
     this.view.confirmSettingsClick();
     this.view.closeSettingsClick();

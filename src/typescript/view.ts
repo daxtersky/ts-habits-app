@@ -9,8 +9,9 @@ export class View {
   get userRegisterUsername() { return DOMElements.inputRegisterUsername.value }
   get userLoginMail() { return DOMElements.inputLoginEmail.value }
   get userLoginPassword() { return DOMElements.inputLoginPassword.value }
-  // WELCOME PAGE
+  // HABITS PAGE
   //
+  // get habitName() { returm DOMElements.input... }
 
   constructor() {
     document.addEventListener('click', e => e.preventDefault());
@@ -28,40 +29,6 @@ export class View {
     DOMElements.navigateToRegister.addEventListener('click', () => {
       DOMElements.modalRegister.classList.add('modal--active');
       DOMElements.modalLogin.classList.remove('modal--active');
-    })
-  }
-
-  public bindAddHabitClick = (): void => {
-    DOMElements.addHabit.addEventListener('click', () => {
-      DOMElements.modalHabit.classList.add('modal--active');
-    })
-  }
-  public confirmHabitClick = (): void => {
-    DOMElements.buttonHabitConfirm.addEventListener('click', () => {
-      console.log('CONFIRM HABIT!');
-      DOMElements.modalHabit.classList.remove('modal--active');
-    })
-  }
-  public closeHabitClick = (): void => {
-    DOMElements.buttonHabitClose.addEventListener('click', (e) => {
-      DOMElements.modalHabit.classList.remove('modal--active');
-    })
-  }
-
-  public bindSettingsClick = (): void => {
-    DOMElements.navigateToSettings.addEventListener('click', () => {
-      DOMElements.modalSettings.classList.add('modal--active');
-    })
-  }
-  public confirmSettingsClick = (): void => {
-    DOMElements.buttonSettingsConfirm.addEventListener('click', () => {
-      console.log('CONFIRM HABIT!');
-      DOMElements.modalSettings.classList.remove('modal--active');
-    })
-  }
-  public closeSettingsClick = (): void => {
-    DOMElements.buttonSettingsClose.addEventListener('click', (e) => {
-      DOMElements.modalSettings.classList.remove('modal--active');
     })
   }
 
@@ -90,7 +57,7 @@ export class View {
     })
   }
 
-  public navigateToLoginPage = (): void => {
+  public navigateToLoginPage = (): void => { // TODO naming wrong
     DOMElements.welcomePage.classList.add('welcome-page--active')
     DOMElements.habitsPage.classList.remove('habits-page--active');
     DOMElements.modalLogin.classList.add('modal--active');
@@ -103,7 +70,7 @@ export class View {
     DOMElements.username.innerText = username;
   }
 
-  // WELCOME PAGE
+  // HABITS PAGE
   public displayHabits = (habits: Habit[]): void => {
     habits.forEach(habit => {
       const newHabit = document.createElement('li');
@@ -113,6 +80,48 @@ export class View {
     })
 
   }
+
+  public bindAddHabitClick = (): void => {
+    DOMElements.addHabit.addEventListener('click', () => {
+      DOMElements.modalHabit.classList.add('modal--active');
+      DOMElements.habitsPage.classList.add('habits-page--disabled');
+    })
+  }
+  public confirmHabitClick = (): void => {
+    DOMElements.buttonHabitConfirm.addEventListener('click', () => {
+      console.log('CONFIRM HABIT!');
+      DOMElements.modalHabit.classList.remove('modal--active');
+      DOMElements.habitsPage.classList.remove('habits-page--disabled');
+    })
+  }
+  public closeHabitClick = (): void => {
+    DOMElements.buttonHabitClose.addEventListener('click', (e) => {
+      DOMElements.modalHabit.classList.remove('modal--active');
+      DOMElements.habitsPage.classList.remove('habits-page--disabled');
+    })
+  }
+
+  public bindSettingsClick = (): void => { // TODO naming wrong
+    DOMElements.navigateToSettings.addEventListener('click', () => {
+      DOMElements.modalSettings.classList.add('modal--active');
+      DOMElements.habitsPage.classList.add('habits-page--disabled');
+
+    })
+  }
+  public confirmSettingsClick = (): void => {
+    DOMElements.buttonSettingsConfirm.addEventListener('click', () => {
+      console.log('CONFIRM HABIT!');
+      DOMElements.modalSettings.classList.remove('modal--active');
+      DOMElements.habitsPage.classList.remove('habits-page--disabled');
+    })
+  }
+  public closeSettingsClick = (): void => {
+    DOMElements.buttonSettingsClose.addEventListener('click', (e) => {
+      DOMElements.modalSettings.classList.remove('modal--active');
+      DOMElements.habitsPage.classList.remove('habits-page--disabled');
+    })
+  }
+
   public bindNavigateLogOutClick = (handler: any): void => {
     DOMElements.navigateToLogOut.addEventListener('click', () => {
       handler();

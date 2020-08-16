@@ -32,7 +32,6 @@ body {
     background-position: center;
     filter: blur(2px);
     display: none;
-
     &--active {
       display: grid;
     }
@@ -40,31 +39,32 @@ body {
 
   .habits-page {
     position: relative;
-
     height: 100%;
     overflow: hidden;
     display: none;
-
-    &--active {
-      display: grid;
-    }
-
     grid-template-columns: minmax(55px, auto) 1fr;
     grid-template-rows: auto 1fr auto;
     gap: .5rem;
+    &--active {
+      display: grid;
+    }
+    &--disabled {
+      // opacity: 0.2;
+      pointer-events: none;
+      filter: blur(2px);
+    }
+
     .header { grid-area: 1 / 1 / 2 / 3 }
     .aside { grid-area: 2 / 1 / 3 / 2 }
     .habits { grid-area: 2 / 2 / 3 / 3 }
     .footer { grid-area: 3 / 1 / 4 / 3 }
   }
-
 }
 
 .header {
   @include box(1rem, $light-theme-light);
   display: flex;
   align-items: center;
-
   &__logo {
     font-size: 2rem;
     font-weight: 800;
@@ -173,7 +173,6 @@ body {
   justify-content: flex-end;
   align-items: center;
   @include box(.5rem, $light-theme-light);
-
   &__icon {
     font-size: 25px;
     padding: 0 5px;
