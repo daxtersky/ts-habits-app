@@ -60,7 +60,7 @@ class Controller {
   // NEW HABIT
   private bindHabitAdd = (habit: Partial<Habit>): void => this.model.onHabitAdd(habit);
   private onHabitsChanged = (habits: Partial<Habit>[]): void => {
-    console.log('onHabitsChanged', );
+    console.log('onHabitsChanged', habits);
     this.view.displayHabits(habits);
   }
   // SETTINGS

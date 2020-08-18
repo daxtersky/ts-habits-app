@@ -95,10 +95,11 @@ export class View {
     while (DOMElements.userHabits.hasChildNodes()) {
       DOMElements.userHabits.removeChild(DOMElements.userHabits.lastChild);
     }
-    habits.forEach(habit => {
+    habits.forEach((habit: Habit) => {
       const newHabit = document.createElement('li');
       newHabit.innerText = habit.name;
       newHabit.classList.add('habits-wrapper__item');
+      newHabit.setAttribute('data-habitid', habit.id.toString())
       DOMElements.userHabits.appendChild(newHabit);
     })
   }
@@ -106,7 +107,13 @@ export class View {
     DOMElements.modalHabit.classList.add('modal--active');
     DOMElements.habitsPage.classList.add('habits-page--disabled');
     DOMElements.inputHabitName.focus();
-    console.log('e', e);
+
+    if (kind === 1) { // new modal
+
+    } else { // edit modal
+      console.log('EDIT HABIT', (e.target as HTMLElement).getAttribute('data-habitid'), 'EDIT kind', kind);
+
+    }
   }
 
   // HABITS PAGE - MODALS
@@ -114,7 +121,6 @@ export class View {
     DOMElements.buttonToHabitConfirm.addEventListener('click', () => {
       handler({
         name: this.habitName,
-        //
       });
       DOMElements.modalHabit.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');

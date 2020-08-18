@@ -77,7 +77,11 @@ export class Model {
   public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
   // NEW HABIT
   public onHabitAdd = (habit: Partial<Habit>): void => {
-    this.habits.push(habit);
+    const newHabit = {
+      ...habit,
+      id: this.getNewUniqueId(),
+    }
+    this.habits.push(newHabit);
     this.onHabitsChange(this.habits);
   }
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
@@ -94,7 +98,16 @@ export class Model {
       case HabitType.Year: return 'yellow';
     }
   }
-  private setUsername = (config: AuthConfig): string => this.userState.username = config.username ? config.username : config.email
+  private setUsername = (config: AuthConfig): string => this.userState.username = config.username ? config.username : config.email;
+  private getNewUniqueId = (): number => {
+    const usedIds: number[] = [];
+    const newNumber = this.getNewNumber();
+    this.habits.forEach(habit => usedIds.push(habit.id));
+    return usedIds.includes(newNumber)
+      ? this.getNewUniqueId()
+      : newNumber;
+  }
+  private getNewNumber = (): number => Math.floor((Math.random() * 999) + 1);
   private readHabits() {
     this.habits = [
       { id: 1, name: 'Brush your teeth', order: 1, habitType: HabitType.Day, description: 'Brush your teeth twice everyday!', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day), },
@@ -108,7 +121,7 @@ export class Model {
       { id: 9, name: 'Talk to a stranger', order: 9, habitType: HabitType.Week, description: 'Meet new people!', activiTyActual: 0, activiTyGoal: 1, habitColor: this.getDefaultColor(HabitType.Week) }
     ]
     this.onHabitsChange(this.habits);
-    // console.log('HABITS', this.habits);
+    console.log('HABITS', this.habits);
   }
 
   // ** hideForLater...
