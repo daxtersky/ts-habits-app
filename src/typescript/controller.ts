@@ -22,6 +22,9 @@ class Controller {
     // NEW HABIT
     this.view.listenerConfirmHabitModalClick(this.bindHabitAdd);
     this.model.bindHabitsChange(this.onHabitsChanged); // TODO
+    // EDIT HABIT
+    this.view.listenerManageHabitModal(this.onManageHabit);
+    // this.view.listenerEditHabitModal(this.onHabitEdit);
     // SETTINGS
     this.view.listenerConfirmSettingsModalClick();
     // this.model.bind....
@@ -63,6 +66,10 @@ class Controller {
     console.log('onHabitsChanged', habits);
     this.view.displayHabits(habits);
   }
+  // EDIT HABIT
+    private onManageHabit = (habitId: number) => {
+      console.log('VIEW - ONMANAGEHABIT!', habitId); // TODO
+    }
   // SETTINGS
   // ...
   // NAVIGATE

@@ -17,14 +17,7 @@ export class View {
   set habitName(newValue: string) { DOMElements.inputHabitName.value = newValue }
 
   constructor() {
-    document.addEventListener('click', e => {
-      e.preventDefault();
-      if ((e.target as HTMLElement).className.includes('button--add-habit')) {
-        this.openHabitModal(e, 1);
-      } else if ((e.target as HTMLElement).className.includes('habits-wrapper__item')) {
-        this.openHabitModal(e, 2);
-      }
-    });
+    document.addEventListener('click', e => e.preventDefault());
   }
 
   // REGISTER
@@ -89,8 +82,6 @@ export class View {
       handler();
     })
   }
-
-  // HABITS PAGE - HABITS
   public displayHabits = (habits: Partial<Habit>[]): void => {
     while (DOMElements.userHabits.hasChildNodes()) {
       DOMElements.userHabits.removeChild(DOMElements.userHabits.lastChild);
@@ -103,20 +94,25 @@ export class View {
       DOMElements.userHabits.appendChild(newHabit);
     })
   }
-  private openHabitModal = (e, kind: number): void => {
-    DOMElements.modalHabit.classList.add('modal--active');
-    DOMElements.habitsPage.classList.add('habits-page--disabled');
-    DOMElements.inputHabitName.focus();
-
-    if (kind === 1) { // new modal
-
-    } else { // edit modal
-      console.log('EDIT HABIT', (e.target as HTMLElement).getAttribute('data-habitid'), 'EDIT kind', kind);
-
-    }
-  }
-
   // HABITS PAGE - MODALS
+  public listenerManageHabitModal = (handler: (habitId: number) => void): void => { // TODO naming... listenerEditHabitModal
+    document.body.addEventListener('click', e => {
+      const habitItemId = (e.target as HTMLElement).dataset?.habitid;
+      const openManageHabitModal = habitItemId || e.target === DOMElements.buttonToNewHabitModal;
+      if (openManageHabitModal) {
+        DOMElements.modalHabit.classList.add('modal--active');
+        DOMElements.habitsPage.classList.add('habits-page--disabled');
+        DOMElements.inputHabitName.focus();
+        if (habitItemId) {
+          DOMElements.modalHabitTitle.innerText = 'Edit habit';
+          handler( +habitItemId );
+        } else if (e.target === DOMElements.buttonToNewHabitModal) {
+          DOMElements.modalHabitTitle.innerText = 'New habit';
+          console.log('new!');
+        }
+      }
+    })
+  }
   public listenerConfirmHabitModalClick = (handler: (habit: Partial<Habit>) => void): void => {
     DOMElements.buttonToHabitConfirm.addEventListener('click', () => {
       handler({

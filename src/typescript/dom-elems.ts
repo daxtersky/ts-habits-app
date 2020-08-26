@@ -14,6 +14,7 @@ export const DOMElements = {
   modalRegister: <HTMLDivElement>getElement('.modal--register'),
   modalLogin: <HTMLDivElement>getElement('.modal--login'),
   modalHabit: <HTMLDivElement>getElement('.modal--habit'),
+  modalHabitTitle: <HTMLDivElement>getElement('.modal__title--habit'),
   modalSettings: <HTMLDivElement>getElement('.modal--settings'),
   // INPUTS
   inputRegisterEmail: <HTMLInputElement>getElement('.modal__input--register-email'),
@@ -30,7 +31,7 @@ export const DOMElements = {
   // BUTTONS
   buttonToRegister: <HTMLButtonElement>getElement('.button--auth--register'),
   buttonToLogin: <HTMLButtonElement>getElement('.button--auth--login'),
-  buttonToNewHabitModal: <HTMLButtonElement>getElement('.button--add-habit'),
+  buttonToNewHabitModal: <HTMLButtonElement>getElement('.button--add-habit'), // TODO managehabitmodal?
   buttonToHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
   buttonToSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
   buttonToModalClose: <HTMLButtonElement[]>getElements('.button--close'),

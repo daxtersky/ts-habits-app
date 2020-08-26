@@ -85,6 +85,8 @@ export class Model {
     this.onHabitsChange(this.habits);
   }
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
+  // EDIT HABIT
+  // public onHabitEdit =
   // NAVIGATE
   public onLogoutUser = (): void => {
     firebase.auth().signOut();
