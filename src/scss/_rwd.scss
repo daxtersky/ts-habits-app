@@ -26,6 +26,9 @@
 
     .aside {
         width: 55px;
+        .nav__item {
+          padding-right: 0;
+        }
         .icon-wrapper__text {
           display: none;
         }

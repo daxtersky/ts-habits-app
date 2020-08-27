@@ -124,10 +124,12 @@ body {
     flex-direction: column;
     align-items: flex-start;
     &__item {
+      font-size: 1rem;
       padding: 10px 15px 10px 0;
       display: flex;
       align-items: center;
       text-transform: uppercase;
+      border: 0;
       &:hover {
         color: $light-theme-darker;
         cursor: pointer;
@@ -198,6 +200,10 @@ body {
   justify-content: flex-end;
   align-items: center;
   @include box(.5rem, $light-theme-light);
+
+  .button__icon {
+    pointer-events: none;
+  }
   &__icon {
     font-size: 25px;
     padding: 0 5px;

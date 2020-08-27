@@ -41,15 +41,14 @@
             <ion-icon class="nav__icon" name="settings-sharp"></ion-icon>
             <span class="icon-wrapper__text">Settings</span>
           </a>
-          <a class="nav__item nav__item--log-out">
+          <button class="nav__item nav__item--log-out">
             <ion-icon class="nav__icon" name="log-out-sharp"></ion-icon>
             <span class="icon-wrapper__text">Sign out</span>
-          </a>
-          <a class="nav__item">
+          </button>
+          <button class="nav__item">
             <ion-icon class="nav__icon" name="paper-plane-sharp"></ion-icon>
-            </ion-icon>
             <span class="icon-wrapper__text">Share us!</span>
-          </a>
+          </button>
         </nav>
       </aside>
       <section class="habits">
@@ -68,9 +67,9 @@
         </section>
       </section>
       <footer class="footer">
-        <button class="button button--add-habit">
-          <ion-icon class="button__icon" name="add-circle-sharp"></ion-icon>Add habit
-        </button>
+        <a class="button button--add-habit">
+          <ion-icon class="button__icon" name="add-circle-sharp" style="pointer-events: none;"></ion-icon>Add habit
+        </a>
         <a class="link" href="https://mikey-studio.xyz/" target="_blank">&copy; 2020 Mikey
           Studio</a>
         <a class="link" href="https://github.com/daxtersky/ts-habits-app" target="_blank">Project
