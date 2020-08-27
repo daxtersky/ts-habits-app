@@ -28,10 +28,10 @@ export const DOMElements = {
   navigateToRegister: <HTMLAnchorElement>getElement('.link-to-register'),
   navigateToSettings: <HTMLAnchorElement>getElement('.nav__item--settings'),
   navigateToLogOut: <HTMLAnchorElement>getElement('.nav__item--log-out'),
+  navigateToManageHabitModal: <HTMLButtonElement>getElement('.button--add-habit'), // TODO managehabitmodal?
   // BUTTONS
   buttonToRegister: <HTMLButtonElement>getElement('.button--auth--register'),
   buttonToLogin: <HTMLButtonElement>getElement('.button--auth--login'),
-  buttonToNewHabitModal: <HTMLButtonElement>getElement('.button--add-habit'), // TODO managehabitmodal?
   buttonToHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
   buttonToSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
   buttonToModalClose: <HTMLButtonElement[]>getElements('.button--close'),

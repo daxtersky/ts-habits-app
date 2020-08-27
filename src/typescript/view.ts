@@ -2,10 +2,6 @@ import { AuthConfig, Habit } from './types';
 import { DOMElements } from './dom-elems';
 
 export class View {
-  navigatorsToHabitModal: Array<HTMLButtonElement | HTMLLIElement[]> = [
-    DOMElements.buttonToNewHabitModal, DOMElements.userHabitItems
-  ];
-
   // WELCOME PAGE
   get userRegisterMail() { return DOMElements.inputRegisterEmail.value }
   get userRegisterPassword() { return DOMElements.inputRegisterPassword.value }
@@ -20,7 +16,7 @@ export class View {
     document.addEventListener('click', e => e.preventDefault());
   }
 
-  // REGISTER
+  // AUTH - REGISTER
   public listenerRegisterClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonToRegister.addEventListener('click', () => {
       this.showSpinner();
@@ -40,8 +36,7 @@ export class View {
   public displayRegisterState = (errorMessage: string): void => {
     DOMElements.registerErrorMessage.innerText = errorMessage;
   }
-
-  // LOGIN
+  // AUTH - LOGIN
   public listenerLoginClick = (handler: (config: AuthConfig) => void): void => {
     DOMElements.buttonToLogin.addEventListener('click', () => {
       this.showSpinner();
@@ -62,13 +57,14 @@ export class View {
   public displayLoginState = (errorMessage: string): void => {
     DOMElements.loginErrorMessage.innerText = errorMessage;
   }
+  // AUTH - NAVIGATION
+  public showSpinner = () => DOMElements.spinner.classList.add('spinner--active');
+  public hideSpinner = () => DOMElements.spinner.classList.remove('spinner--active');
   public navigateToLoginPage = (): void => {
     DOMElements.welcomePage.classList.add('welcome-page--active')
     DOMElements.habitsPage.classList.remove('habits-page--active');
     DOMElements.modalLogin.classList.add('modal--active');
   }
-
-  // HABITS PAGE
   public navigateToHabitsPage = (username: string): void => {
     DOMElements.welcomePage.classList.remove('welcome-page--active')
     DOMElements.habitsPage.classList.add('habits-page--active');
@@ -82,6 +78,7 @@ export class View {
       handler();
     })
   }
+  // HABITS
   public displayHabits = (habits: Partial<Habit>[]): void => {
     while (DOMElements.userHabits.hasChildNodes()) {
       DOMElements.userHabits.removeChild(DOMElements.userHabits.lastChild);
@@ -94,11 +91,11 @@ export class View {
       DOMElements.userHabits.appendChild(newHabit);
     })
   }
-  // HABITS PAGE - MODALS
-  public listenerManageHabitModal = (handler: (habitId: number) => void): void => { // TODO naming... listenerEditHabitModal
+  //
+  public listenerOpenHabitModalClick = (handler: (habitId: number) => void): void => {
     document.body.addEventListener('click', e => {
       const habitItemId = (e.target as HTMLElement).dataset?.habitid;
-      const openManageHabitModal = habitItemId || e.target === DOMElements.buttonToNewHabitModal;
+      const openManageHabitModal = habitItemId || e.target === DOMElements.navigateToManageHabitModal;
       if (openManageHabitModal) {
         DOMElements.modalHabit.classList.add('modal--active');
         DOMElements.habitsPage.classList.add('habits-page--disabled');
@@ -106,14 +103,14 @@ export class View {
         if (habitItemId) {
           DOMElements.modalHabitTitle.innerText = 'Edit habit';
           handler( +habitItemId );
-        } else if (e.target === DOMElements.buttonToNewHabitModal) {
+        } else if (e.target === DOMElements.navigateToManageHabitModal) {
           DOMElements.modalHabitTitle.innerText = 'New habit';
           console.log('new!');
         }
       }
     })
   }
-  public listenerConfirmHabitModalClick = (handler: (habit: Partial<Habit>) => void): void => {
+  public listenerConfirmHabitChangeClick = (handler: (habit: Partial<Habit>) => void): void => {
     DOMElements.buttonToHabitConfirm.addEventListener('click', () => {
       handler({
         name: this.habitName,
@@ -123,6 +120,7 @@ export class View {
       this.habitName = null;
     })
   }
+  // SETTINGS MODAL
   public navigateToSettingsModalClick = (): void => {
     DOMElements.navigateToSettings.addEventListener('click', () => {
       DOMElements.modalSettings.classList.add('modal--active');
@@ -144,9 +142,5 @@ export class View {
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     }));
   }
-
-  // SPINNER
-  public showSpinner = () => DOMElements.spinner.classList.add('spinner--active');
-  public hideSpinner = () => DOMElements.spinner.classList.remove('spinner--active');
 
 }

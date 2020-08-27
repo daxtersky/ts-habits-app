@@ -22,24 +22,23 @@ export class Model {
     errorMessage: '',
     isLogged: false,
   }
-  // REGISTER
+  // AUTH - REGISTER
   private handleRegisterError: ErrorMessageCallback;
-  // LOGIN
+  // AUTH - LOGIN
   private handleLoginError: ErrorMessageCallback;
-  // LOGIN STATE CHANGE (FIREBASE AUTH)
+  // AUTH - LOGIN STATE CHANGE (FIREBASE AUTH)
   private userAuthStateNotLogged: UserStateCallback;
   private userAuthStateLogged: UserStateCallback;
-  // NEW HABIT
+  // MANAGE HABIT MODAL
   private onHabitsChange: HabitsCallback;
-  // SETTINGS
-  // NAVIGATE
+  // SETTINGS MODAL
 
   constructor() {
     firebase.initializeApp(this.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => this.userAuthStateChanged(user));
   }
 
-  // REGISTER
+  // AUTH - REGISTER
   public onRegisterUser = (config: AuthConfig): void => {
     firebase.auth()
       .createUserWithEmailAndPassword(config.email, config.password)
@@ -50,7 +49,7 @@ export class Model {
       })
   }
   public bindRegisterError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleRegisterError = callback;
-  // LOGIN
+  // AUTH - LOGIN
   public onLoginUser = (config: AuthConfig): void => {
     firebase.auth()
       .signInWithEmailAndPassword(config.email, config.password)
@@ -60,7 +59,7 @@ export class Model {
       })
   }
   public bindLoginError = (callback: ErrorMessageCallback): ErrorMessageCallback => this.handleLoginError = callback;
-  // LOGIN STATE CHANGE (FIREBASE AUTH)
+  // AUTH - LOGIN STATE CHANGE (FIREBASE AUTH)
   private userAuthStateChanged(user: firebase.User): void {
     if (user) {
       this.userState = { ...this.userState, isLogged: true };
@@ -75,8 +74,12 @@ export class Model {
   }
   public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
   public bindUserAuthStateLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateLogged = callback;
-  // NEW HABIT
-  public onHabitAdd = (habit: Partial<Habit>): void => {
+  // AUTH - NAVIGATION
+  public onLogoutUser = (): void => {
+    firebase.auth().signOut();
+  }
+  // HABITS
+  public onHabitChange = (habit: Partial<Habit>): void => {
     const newHabit = {
       ...habit,
       id: this.getNewUniqueId(),
@@ -84,13 +87,10 @@ export class Model {
     this.habits.push(newHabit);
     this.onHabitsChange(this.habits);
   }
+  //
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
-  // EDIT HABIT
+
   // public onHabitEdit =
-  // NAVIGATE
-  public onLogoutUser = (): void => {
-    firebase.auth().signOut();
-  }
   // HELPER FUNCTIONS
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {

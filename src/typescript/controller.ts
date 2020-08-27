@@ -8,48 +8,47 @@ document.addEventListener('DOMContentLoaded', (): Controller => {
 
 class Controller {
   constructor(public view: View, public model: Model) {
-    // SPINNER
-    this.view.showSpinner();
-    // REGISTER
+    // AUTH - REGISTER
     this.view.listenerRegisterClick(this.bindRegisterProcess);
     this.model.bindRegisterError(this.onRegisterError);
-    // LOGIN
+    // AUTH - LOGIN
     this.view.listenerLoginClick(this.bindLoginProcess);
     this.model.bindLoginError(this.onLoginError);
-    // LOGIN STATE CHANGE (FIREBASE AUTH)
+    // AUTH - LOGIN STATE CHANGE (FIREBASE AUTH)
     this.model.bindUserAuthStateNotLogged(this.onUserNotLogged);
     this.model.bindUserAuthStateLogged(this.onUserLogged);
-    // NEW HABIT
-    this.view.listenerConfirmHabitModalClick(this.bindHabitAdd);
-    this.model.bindHabitsChange(this.onHabitsChanged); // TODO
-    // EDIT HABIT
-    this.view.listenerManageHabitModal(this.onManageHabit);
-    // this.view.listenerEditHabitModal(this.onHabitEdit);
-    // SETTINGS
-    this.view.listenerConfirmSettingsModalClick();
-    // this.model.bind....
-    // NAVIGATE
+    // AUTH - NAVIGATION
+    this.view.showSpinner();
     this.view.navigateToRegisterModalClick();
     this.view.navigateToLoginModalClick();
-    // this.view.navigateToHabitModalClick(); // TODO
-    this.view.navigateToSettingsModalClick();
     this.view.navigateToCloseModalClick();
     this.view.navigateToLogoutClick(this.handleLogout);
+    // HABITS
+    //
+    this.model.bindHabitsChange(this.onHabitsChanged);
+    //
+    this.view.listenerOpenHabitModalClick(this.bindHabitREAD);
+    this.view.listenerConfirmHabitChangeClick(this.bindHabitChange);
+    // this.model.bind.........
+    // SETTINGS MODAL
+    this.view.navigateToSettingsModalClick();
+    this.view.listenerConfirmSettingsModalClick();
+    // this.model.bind....
   }
 
-  // REGISTER
+  // AUTH - REGISTER
   private bindRegisterProcess = (config: AuthConfig): void => this.model.onRegisterUser(config);
   private onRegisterError = (errorMessage: string): void => {
     this.view.hideSpinner();
     this.view.displayRegisterState(errorMessage);
   }
-  // LOGIN
+  // AUTH - LOGIN
   private bindLoginProcess = (config: AuthConfig): void => this.model.onLoginUser(config);
   private onLoginError = (errorMessage: string): void => {
     this.view.hideSpinner();
     this.view.displayLoginState(errorMessage);
   }
-  // LOGIN STATE CHANGE (FIREBASE AUTH)
+  // AUTH - LOGIN STATE CHANGE (FIREBASE AUTH)
   private onUserNotLogged = (): void => {
     setTimeout(() => {
       this.view.hideSpinner();
@@ -60,19 +59,16 @@ class Controller {
     this.view.hideSpinner();
     this.view.navigateToHabitsPage(userState.username);
   }
-  // NEW HABIT
-  private bindHabitAdd = (habit: Partial<Habit>): void => this.model.onHabitAdd(habit);
-  private onHabitsChanged = (habits: Partial<Habit>[]): void => {
-    console.log('onHabitsChanged', habits);
-    this.view.displayHabits(habits);
-  }
-  // EDIT HABIT
-    private onManageHabit = (habitId: number) => {
-      console.log('VIEW - ONMANAGEHABIT!', habitId); // TODO
-    }
-  // SETTINGS
-  // ...
-  // NAVIGATE
+  // AUTH - NAVIGATION
   private handleLogout = (): void => this.model.onLogoutUser();
+  // HABITS
+  private onHabitsChanged = (habits: Partial<Habit>[]): void => this.view.displayHabits(habits);
+  //
+  private bindHabitREAD = (habitId: number) => {
+    console.log('habitid!', habitId);
+    // this.view.displayHabit(habitId);
+  }
+  private bindHabitChange = (habit: Partial<Habit>): void => this.model.onHabitChange(habit);
+  // SETTINGS MODAL
   // ...
 }
