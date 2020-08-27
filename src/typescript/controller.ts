@@ -27,9 +27,10 @@ class Controller {
     //
     this.model.bindHabitsChange(this.onHabitsChanged);
     //
-    this.view.listenerOpenHabitModalClick(this.bindHabitREAD);
+    this.view.listenerOpenHabitModalClick(this.bindHabitRead); // TODO
+    // this.model.bindHabitRead(this.onHabitRead); // TODO
+    this.model.bindHabitRead(this.onHabitRead); // TODO
     this.view.listenerConfirmHabitChangeClick(this.bindHabitChange);
-    // this.model.bind.........
     // SETTINGS MODAL
     this.view.navigateToSettingsModalClick();
     this.view.listenerConfirmSettingsModalClick();
@@ -64,9 +65,9 @@ class Controller {
   // HABITS
   private onHabitsChanged = (habits: Partial<Habit>[]): void => this.view.displayHabits(habits);
   //
-  private bindHabitREAD = (habitId: number) => {
-    console.log('habitid!', habitId);
-    // this.view.displayHabit(habitId);
+  private bindHabitRead = (habitId: number) => this.model.onHabitRead(habitId); // TODO
+  private onHabitRead = (habit: Partial<Habit>) => {
+    this.view.displayHabit(habit); // TODO
   }
   private bindHabitChange = (habit: Partial<Habit>): void => this.model.onHabitChange(habit);
   // SETTINGS MODAL

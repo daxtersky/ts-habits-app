@@ -120,6 +120,9 @@ export class View {
       this.habitName = null;
     })
   }
+  public displayHabit = (a) => {
+    console.log('habit in VIEW!!', a);
+  }
   // SETTINGS MODAL
   public navigateToSettingsModalClick = (): void => {
     DOMElements.navigateToSettings.addEventListener('click', () => {

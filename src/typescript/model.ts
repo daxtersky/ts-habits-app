@@ -30,6 +30,7 @@ export class Model {
   private userAuthStateNotLogged: UserStateCallback;
   private userAuthStateLogged: UserStateCallback;
   // MANAGE HABIT MODAL
+  private handleHabitRead: any;
   private onHabitsChange: HabitsCallback;
   // SETTINGS MODAL
 
@@ -79,6 +80,13 @@ export class Model {
     firebase.auth().signOut();
   }
   // HABITS
+  public onHabitRead = (habitId: number) => {
+    const habit = this.habits.find(habit => habit.id === habitId);
+    this.handleHabitRead(habit);
+  }
+  public bindHabitRead = (callback) => { // TODO
+    this.handleHabitRead = callback;
+  }
   public onHabitChange = (habit: Partial<Habit>): void => {
     const newHabit = {
       ...habit,
@@ -89,7 +97,6 @@ export class Model {
   }
   //
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
-
   // public onHabitEdit =
   // HELPER FUNCTIONS
   private getDefaultColor = (habitType: HabitType): string => {
@@ -110,7 +117,7 @@ export class Model {
       : newNumber;
   }
   private getNewNumber = (): number => Math.floor((Math.random() * 999) + 1);
-  private readHabits() {
+  private readHabits(): void {
     this.habits = [
       { id: 1, name: 'Brush your teeth', order: 1, habitType: HabitType.Day, description: 'Brush your teeth twice everyday!', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day), },
       { id: 2, name: 'Train yoga for min. 20 minutes', order: 2, habitType: HabitType.Day, description: 'Yoga description', activiTyActual: 0, activiTyGoal: 2, habitColor: this.getDefaultColor(HabitType.Day), },
@@ -125,7 +132,6 @@ export class Model {
     this.onHabitsChange(this.habits);
     console.log('HABITS', this.habits);
   }
-
   // ** hideForLater...
   hideForLater = {
     /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
