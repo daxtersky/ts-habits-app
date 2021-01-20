@@ -66,11 +66,9 @@ export class Model {
       this.userState = { ...this.userState, isLogged: true };
       this.userAuthStateLogged(this.userState);
       this.readHabits();
-      console.log('logged!', this.userState);
     } else {
       this.userState = { ...this.userState, isLogged: false };
       this.userAuthStateNotLogged(this.userState);
-      console.log('not logged!', this.userState);
     }
   }
   public bindUserAuthStateNotLogged = (callback: UserStateCallback): UserStateCallback => this.userAuthStateNotLogged = callback;
@@ -81,23 +79,33 @@ export class Model {
   }
   // HABITS
   public onHabitRead = (habitId: number) => {
+    console.log(this.habits, habitId);
     const habit = this.habits.find(habit => habit.id === habitId);
     this.handleHabitRead(habit);
   }
-  public bindHabitRead = (callback) => { // TODO
+  public bindHabitRead = (callback) => {
     this.handleHabitRead = callback;
   }
+  public onHabitDelete = (habitItemId: number): void => {
+    this.habits = this.habits.filter(habitItem => habitItem.id !== habitItemId);
+    this.onHabitsChange(this.habits);
+  }
   public onHabitChange = (habit: Partial<Habit>): void => {
-    const newHabit = {
-      ...habit,
-      id: this.getNewUniqueId(),
+    if (habit.id) { // edit habit
+      const habitEditIndex = this.habits.findIndex(habitItem => habitItem.id === habit.id);
+      this.habits[habitEditIndex].name = habit.name;
+    } else { // new habit
+      const newHabit = {
+        ...habit,
+        id: this.getNewUniqueId(),
+      }
+      this.habits.push(newHabit);
     }
-    this.habits.push(newHabit);
     this.onHabitsChange(this.habits);
   }
   //
   public bindHabitsChange = (callback: HabitsCallback): HabitsCallback => this.onHabitsChange = callback;
-  // public onHabitEdit =
+
   // HELPER FUNCTIONS
   private getDefaultColor = (habitType: HabitType): string => {
     switch (habitType) {
@@ -130,18 +138,6 @@ export class Model {
       { id: 9, name: 'Talk to a stranger', order: 9, habitType: HabitType.Week, description: 'Meet new people!', activiTyActual: 0, activiTyGoal: 1, habitColor: this.getDefaultColor(HabitType.Week) }
     ]
     this.onHabitsChange(this.habits);
-    console.log('HABITS', this.habits);
-  }
-  // ** hideForLater...
-  hideForLater = {
-    /* public onHandleCallableFunction = (config: AuthConfig, functions: firebase.functions.Functions) => {
-      console.log('register click!', config);
-      const sayHello = functions.httpsCallable('sayHello');
-      sayHello(config).then(result => {
-        console.log('sayHello res', config);
-        return result;
-      })
-    } */
   }
 
 }

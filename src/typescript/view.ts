@@ -9,6 +9,7 @@ export class View {
   get userLoginMail() { return DOMElements.inputLoginEmail.value }
   get userLoginPassword() { return DOMElements.inputLoginPassword.value }
   // HABITS PAGE
+  habitItemId: number;
   get habitName() { return DOMElements.inputHabitName.value }
   set habitName(newValue: string) { DOMElements.inputHabitName.value = newValue }
 
@@ -83,7 +84,7 @@ export class View {
     while (DOMElements.userHabits.hasChildNodes()) {
       DOMElements.userHabits.removeChild(DOMElements.userHabits.lastChild);
     }
-    habits.forEach((habit: Habit) => {
+    habits.forEach((habit) => { // Habit
       const newHabit = document.createElement('li');
       newHabit.innerText = habit.name;
       newHabit.classList.add('habits-wrapper__item');
@@ -94,18 +95,19 @@ export class View {
   //
   public listenerOpenHabitModalClick = (handler: (habitId: number) => void): void => {
     document.body.addEventListener('click', e => {
-      const habitItemId = (e.target as HTMLElement).dataset?.habitid;
-      const openManageHabitModal = habitItemId || e.target === DOMElements.navigateToManageHabitModal;
+      this.habitItemId = +(e.target as HTMLElement).dataset?.habitid;
+      const openManageHabitModal = this.habitItemId || e.target === DOMElements.navigateToManageHabitModal;
       if (openManageHabitModal) {
         DOMElements.modalHabit.classList.add('modal--active');
         DOMElements.habitsPage.classList.add('habits-page--disabled');
         DOMElements.inputHabitName.focus();
-        if (habitItemId) {
+        if (this.habitItemId) {
           DOMElements.modalHabitTitle.innerText = 'Edit habit';
-          handler( +habitItemId );
+          handler(this.habitItemId);
+          DOMElements.buttonToHabitDelete.classList.remove('modal--hidden');
         } else if (e.target === DOMElements.navigateToManageHabitModal) {
           DOMElements.modalHabitTitle.innerText = 'New habit';
-          console.log('new!');
+          DOMElements.buttonToHabitDelete.classList.add('modal--hidden');
         }
       }
     })
@@ -114,14 +116,25 @@ export class View {
     DOMElements.buttonToHabitConfirm.addEventListener('click', () => {
       handler({
         name: this.habitName,
+        id: this.habitItemId,
       });
       DOMElements.modalHabit.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
-      this.habitName = null;
+      this.habitName = '';
+      this.habitItemId = undefined;
     })
   }
-  public displayHabit = (a) => {
-    console.log('habit in VIEW!!', a);
+  public listenerDeleteHabitClick = (handler: (habitId: number) => void): void => {
+    DOMElements.buttonToHabitDelete.addEventListener('click', () => {
+      handler(this.habitItemId);
+      DOMElements.modalHabit.classList.remove('modal--active');
+      DOMElements.habitsPage.classList.remove('habits-page--disabled');
+      this.habitName = '';
+      this.habitItemId = undefined;
+    })
+  }
+  public displayHabit = (habit: Partial<Habit>) => {
+    this.habitName = habit.name;
   }
   // SETTINGS MODAL
   public navigateToSettingsModalClick = (): void => {
@@ -132,16 +145,20 @@ export class View {
   }
   public listenerConfirmSettingsModalClick = (): void => {
     DOMElements.buttonToSettingsConfirm.addEventListener('click', () => {
-      console.log('CONFIRM SETTINGS!');
       DOMElements.modalSettings.classList.remove('modal--active');
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     })
   }
   public navigateToCloseModalClick = (): void => {
+
     DOMElements.buttonToModalClose.forEach(button => button.addEventListener('click', e => {
-      (e.target as HTMLElement).classList.contains('button--close-habit') // else 'button--close-settings'
-        ? DOMElements.modalHabit.classList.remove('modal--active')
-        : DOMElements.modalSettings.classList.remove('modal--active');
+      if ((e.target as HTMLElement).classList.contains('button--close-habit')) { // else 'button--close-settings'
+        DOMElements.modalHabit.classList.remove('modal--active')
+        this.habitName = '';
+        this.habitItemId = undefined;
+      } else {
+        DOMElements.modalSettings.classList.remove('modal--active');
+      }
       DOMElements.habitsPage.classList.remove('habits-page--disabled');
     }));
   }

@@ -86,6 +86,9 @@ $light-warning: #f00;
   &--active {
     display: initial;
   }
+  &--hidden {
+    display: none;
+  }
 
   &__text {
     margin: .4rem 0;

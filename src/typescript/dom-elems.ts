@@ -33,6 +33,7 @@ export const DOMElements = {
   buttonToRegister: <HTMLButtonElement>getElement('.button--auth--register'),
   buttonToLogin: <HTMLButtonElement>getElement('.button--auth--login'),
   buttonToHabitConfirm: <HTMLButtonElement>getElement('.button--habit-confirm'),
+  buttonToHabitDelete: <HTMLButtonElement>getElement('.button--habit-delete'),
   buttonToSettingsConfirm: <HTMLButtonElement>getElement('.button--settings-confirm'),
   buttonToModalClose: <HTMLButtonElement[]>getElements('.button--close'),
 }
